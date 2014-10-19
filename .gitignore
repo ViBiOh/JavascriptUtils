@@ -1,0 +1,32 @@
+# MacOs Files
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+
+# Windows Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Eclipse Files
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+
+# IntelliJ Files
+.idea/
+*.iml
+*.iws
+
+# Node Package Manager
+node_modules
+
+# Bower dependencies Manage
+bower_components
+
+# Grunt Builder
+dist
+coverage
