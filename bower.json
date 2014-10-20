@@ -1,0 +1,20 @@
+{
+  "name": "JavaScriptUtils",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ViBiOh/JavascriptUtils",
+  "authors": [
+    "Vincent Boutour <vincent.boutour@gmail.com>"
+  ],
+  "description": "Common & usual functions for JS",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "src",
+    "/**/*",
+    "!/dist/**/*"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
