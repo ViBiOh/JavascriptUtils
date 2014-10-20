@@ -1,12 +1,14 @@
 (function (root, factory) {
   'use strict';
 
+  var moduleName = 'Dichotomic';
+
   if (typeof define === 'function' && define.amd) {
-    define('Dichotomic', factory);
+    define(moduleName, factory);
   } else if (typeof exports === 'object') {
     module.exports = factory;
   } else {
-    root.Dichotomic = factory();
+    root[moduleName] = factory();
   }
 })(this, function() {
   'use strict';

@@ -1,12 +1,14 @@
 (function (root, factory) {
   'use strict';
 
+  var moduleName = 'Primitives';
+
   if (typeof define === 'function' && define.amd) {
-    define('Primitives', factory);
+    define(moduleName, factory);
   } else if (typeof exports === 'object') {
     module.exports = factory;
   } else {
-    root.Primitives = factory();
+    root[moduleName] = factory();
   }
 })(this, function() {
   'use strict';
