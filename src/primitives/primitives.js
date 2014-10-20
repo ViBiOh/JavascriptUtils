@@ -25,7 +25,9 @@
       }
     },
     hasValue: function(value) {
-      return value !== undefined && value !== null && String(value) !== '';
+      var self = this;
+
+      return value !== undefined && value !== null && (self.isArray(value) || String(value) !== '');
     },
     inspectValue: function(value) {
       var self = this;
@@ -52,33 +54,27 @@
       }
       return undefined;
     },
-    isAnAssociativeArray: function(value) {
-      var retour = typeof value === 'object' && value !== null;
-
-      if (retour) {
-        retour = !(value instanceof String);
-      } else if (retour) {
-        retour = !(value instanceof Boolean);
-      } else if (retour) {
-        retour = !(value instanceof Number);
-      } else if (retour) {
-        retour = !(value instanceof Array);
-      }
-
-      return retour;
+    isAssociativeArray: function(value) {
+      return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || value instanceof Array);
     },
     extend: function(destination, append) {
       var self = this;
 
+      if (!(self.isAssociativeArray(destination) && self.isAssociativeArray(append))) {
+        throw 'Invalid extend between <' + destination + '> and <' + append + '>';
+      }
+
       for (var key in append) {
         if (keyExists.call(append, key)) {
-          if (keyExists.call(destination, key) && self.isAnAssociativeArray(append[key]) && self.isAnAssociativeArray(destination[key])) {
+          if (keyExists.call(destination, key) && self.isAssociativeArray(append[key]) && self.isAssociativeArray(destination[key])) {
             self.extend(destination[key], append[key]);
           } else {
             destination[key] = append[key];
           }
         }
       }
+
+      return destination;
     }
   };
 });
