@@ -25,10 +25,6 @@
         unit: '<%= src.dir %>**/test.*.js'
       },
 
-      banner: '/*\n\t<%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-          '\tby <%= pkg.author %> under <%= pkg.license %> license' +
-          '\n\t<%= pkg.description %>\n*/\n',
-
       clean: ['<%= dist.dir %>*'],
 
       copy: {
@@ -106,11 +102,13 @@
       },
 
       uglify: {
+        options: {
+          banner: '/*\n\t<%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+          '\tby <%= pkg.author %> under <%= pkg.license %> license' +
+          '\n\t<%= pkg.description %>\n*/\n',
+          report: 'gzip'
+        },
         dist: {
-          options: {
-            banner: '<%= banner %>',
-            report: 'gzip'
-          },
           files: [{
             expand: true,
             src: '<%= dist.dir %>**/*.js'
