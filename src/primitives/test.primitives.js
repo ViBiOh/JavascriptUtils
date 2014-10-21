@@ -20,7 +20,9 @@
       });
 
       it('should say if defined object is an int', function() {
-        expect(Primitives.isInt({value: 0})).toBeFalsy();
+        expect(Primitives.isInt({
+          value: 0
+        })).toBeFalsy();
       });
 
       it('should say if array is an int', function() {
@@ -312,15 +314,39 @@
       });
 
       it('should extend two simple objects', function() {
-        expect(Primitives.extend({id: 1, name: 'Test'}, {id: 2, mail: 'test@localhost'})).toEqual({id: 2, name: 'Test', mail: 'test@localhost'});
+        expect(Primitives.extend({
+          id: 1, name: 'Test'
+        }, {
+          id: 2, mail: 'test@localhost'
+        })).toEqual({
+          id: 2, name: 'Test', mail: 'test@localhost'
+        });
       });
 
       it('should extend two objects with one sub-objects', function() {
-        expect(Primitives.extend({id: 1, name: 'Test'}, {id: 2, contact: {mail: 'test@localhost'}})).toEqual({id: 2, name: 'Test', contact: {mail: 'test@localhost'}});
+        expect(Primitives.extend({
+          id: 1, name: 'Test'
+        }, {
+          id: 2, contact: {
+            mail: 'test@localhost'
+          }
+        })).toEqual({
+          id: 2, name: 'Test', contact: {
+            mail: 'test@localhost'
+          }
+        });
       });
 
       it('should extend two objects with undefined force', function() {
-        expect(Primitives.extend({id: 1, name: 'Test', contact: {mail: 'test@localhost'}}, {id: 2, contact: undefined})).toEqual({id: 2, name: 'Test', contact: undefined});
+        expect(Primitives.extend({
+          id: 1, name: 'Test', contact: {
+            mail: 'test@localhost'
+          }
+        }, {
+          id: 2, contact: undefined
+        })).toEqual({
+          id: 2, name: 'Test', contact: undefined
+        });
       });
 
       it('should extend two objects with sub-objects', function() {
@@ -358,7 +384,9 @@
           return 'test string';
         };
 
-        expect(Primitives.extend({}, new RawObject())).toEqual({id: 8000});
+        expect(Primitives.extend({}, new RawObject())).toEqual({
+          id: 8000
+        });
       });
     });
   });

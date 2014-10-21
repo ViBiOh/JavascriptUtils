@@ -72,11 +72,19 @@
     });
 
     it('should check if an array is sorted with improper function', function() {
-      expect(Dichotomic.checkSort([{id: 1}, {id: 2}])).toBeFalsy();
+      expect(Dichotomic.checkSort([{
+        id: 1
+      }, {
+        id: 2
+      }])).toBeFalsy();
     });
 
     it('should check if an array is sorted with proper function', function() {
-      expect(Dichotomic.checkSort([{id: 1}, {id: 2}], function(a, b) {
+      expect(Dichotomic.checkSort([{
+        id: 1
+      }, {
+        id: 2
+      }], function(a, b) {
         if (a.id < b.id) {
           return -1;
         }
@@ -87,22 +95,22 @@
       })).toBeTruthy();
     });
 
-    it ('should not insert in an undefined array', function() {
+    it('should not insert in an undefined array', function() {
       expect(Dichotomic.insert()).toBeUndefined();
     });
 
-    it ('should insert in an empty array', function() {
+    it('should insert in an empty array', function() {
       expect(Dichotomic.insert(8000, [], undefined)).toEqual(0);
     });
 
-    it ('should insert in an already defined array', function() {
+    it('should insert in an already defined array', function() {
       var arrayInsert = [0, 2, 3, 4, 5, 6, 7, 8, 9];
       expect(Dichotomic.insert(1, arrayInsert, undefined)).toEqual(1);
       expect(Dichotomic.checkSort(arrayInsert)).toBeTruthy();
       expect(arrayInsert.length).toEqual(10);
     });
 
-    it ('should insert in an already defined array with doublon', function() {
+    it('should insert in an already defined array with doublon', function() {
       var arrayInsert = [0, 1, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9];
       var insertIndex = Dichotomic.insert(2, arrayInsert, undefined);
       expect(insertIndex).toBeGreaterThan(1);
@@ -111,14 +119,14 @@
       expect(arrayInsert.length).toEqual(13);
     });
 
-    it ('should insert at a beginning of an array', function() {
+    it('should insert at a beginning of an array', function() {
       var arrayInsert = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       expect(Dichotomic.insert(0, arrayInsert, undefined)).toEqual(0);
       expect(Dichotomic.checkSort(arrayInsert)).toBeTruthy();
       expect(arrayInsert.length).toEqual(10);
     });
 
-    it ('should insert at a ending of an array', function() {
+    it('should insert at a ending of an array', function() {
       var arrayInsert = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       expect(Dichotomic.insert(9, arrayInsert, undefined)).toEqual(10);
       expect(Dichotomic.checkSort(arrayInsert)).toBeTruthy();
