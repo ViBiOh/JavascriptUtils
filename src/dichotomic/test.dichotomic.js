@@ -71,7 +71,7 @@
       expect(Dichotomic.checkSort([2, 2, 2, 2, 2, 2, 2, 3])).toBeTruthy();
     });
 
-    it('should check if an array is not sorted with improper function', function() {
+    it('should check if an array is sorted with improper function', function() {
       expect(Dichotomic.checkSort([{id: 1}, {id: 2}])).toBeFalsy();
     });
 
@@ -88,7 +88,7 @@
     });
 
     it ('should not insert in an undefined array', function() {
-      expect(Dichotomic.insert(undefined, undefined, undefined)).toBeUndefined();
+      expect(Dichotomic.insert()).toBeUndefined();
     });
 
     it ('should insert in an empty array', function() {

@@ -1,14 +1,12 @@
-(function (root, factory) {
+(function(root, factory) {
   'use strict';
 
-  var moduleName = 'Dichotomic';
-
   if (typeof define === 'function' && define.amd) {
-    define(moduleName, factory);
+    define(factory);
   } else if (typeof exports === 'object') {
     module.exports = factory;
   } else {
-    root[moduleName] = factory();
+    root.Dichotomic = factory();
   }
 })(this, function() {
   'use strict';
@@ -35,10 +33,10 @@
       return undefined;
     }
     var compare = getCompareFn(compareFn);
-
     var min = 0;
     var max = array.length;
-    var compareResult, current;
+    var compareResult;
+    var current;
 
     if (max !== 0) {
       while (min <= max) {

@@ -4,51 +4,51 @@
   describe('Primitives', function() {
     describe('isInt', function() {
       it('should say if udefined is an int', function() {
-          expect(Primitives.isInt(undefined)).toBeFalsy();
+        expect(Primitives.isInt(undefined)).toBeFalsy();
       });
 
       it('should say if udefined is an int', function() {
-          expect(Primitives.isInt(null)).toBeFalsy();
+        expect(Primitives.isInt(null)).toBeFalsy();
       });
 
       it('should say if empty string is an int', function() {
-          expect(Primitives.isInt('')).toBeFalsy();
+        expect(Primitives.isInt('')).toBeFalsy();
       });
 
       it('should say if object is an int', function() {
-          expect(Primitives.isInt({})).toBeFalsy();
+        expect(Primitives.isInt({})).toBeFalsy();
       });
 
       it('should say if defined object is an int', function() {
-          expect(Primitives.isInt({value: 0})).toBeFalsy();
+        expect(Primitives.isInt({value: 0})).toBeFalsy();
       });
 
       it('should say if array is an int', function() {
-          expect(Primitives.isInt([])).toBeFalsy();
+        expect(Primitives.isInt([])).toBeFalsy();
       });
 
       it('should say if double is an int', function() {
-          expect(Primitives.isInt(0.1)).toBeFalsy();
+        expect(Primitives.isInt(0.1)).toBeFalsy();
       });
 
       it('should say if NaN is an int', function() {
-          expect(Primitives.isInt(NaN)).toBeFalsy();
+        expect(Primitives.isInt(NaN)).toBeFalsy();
       });
 
       it('should say if zero is an int', function() {
-          expect(Primitives.isInt(0)).toBeTruthy();
+        expect(Primitives.isInt(0)).toBeTruthy();
       });
 
       it('should say if number is an int', function() {
-          expect(Primitives.isInt(8000)).toBeTruthy();
+        expect(Primitives.isInt(8000)).toBeTruthy();
       });
 
       it('should say if negative number is an int', function() {
-          expect(Primitives.isInt(-50)).toBeTruthy();
+        expect(Primitives.isInt(-50)).toBeTruthy();
       });
 
       it('should say if pow is an int', function() {
-          expect(Primitives.isInt(1e8)).toBeTruthy();
+        expect(Primitives.isInt(1e8)).toBeTruthy();
       });
     });
 
@@ -348,7 +348,6 @@
           }
         }.toString());
       });
-
 
       it('should ignore prototype property', function() {
         var RawObject = function() {

@@ -1,14 +1,12 @@
-(function (root, factory) {
+(function(root, factory) {
   'use strict';
 
-  var moduleName = 'Primitives';
-
   if (typeof define === 'function' && define.amd) {
-    define(moduleName, factory);
+    define(factory);
   } else if (typeof exports === 'object') {
     module.exports = factory;
   } else {
-    root[moduleName] = factory();
+    root.Primitives = factory();
   }
 })(this, function() {
   'use strict';
@@ -20,7 +18,7 @@
       return typeof value === 'number' && (value % 1) === 0;
     },
     isArray: function(value) {
-      if(Array.isArray) {
+      if (Array.isArray) {
         return Array.isArray(value);
       } else {
         return Object.prototype.toString.call(value) === '[object Array]';
