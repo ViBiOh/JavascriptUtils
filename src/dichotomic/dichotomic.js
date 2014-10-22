@@ -34,11 +34,11 @@
     }
     var compare = getCompareFn(compareFn);
     var min = 0;
-    var max = array.length;
+    var max = array.length - 1;
     var compareResult;
     var current;
 
-    if (max !== 0) {
+    if (max >= 0) {
       while (min <= max) {
         current = Math.floor((min + max) / 2);
         compareResult = compare(element, array[current]);

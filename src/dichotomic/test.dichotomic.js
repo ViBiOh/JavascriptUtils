@@ -43,8 +43,8 @@
     });
 
     it('should found in one shot of a large array', function() {
-      var result = Dichotomic.search(2499, largeArray);
-      expect(result).toEqual(2499);
+      var result = Dichotomic.search(2500, largeArray);
+      expect(result).toEqual(2500);
     });
 
     it('should check if an undefined array is sorted', function() {
@@ -103,6 +103,14 @@
       expect(Dichotomic.insert(8000, [], undefined)).toEqual(0);
     });
 
+    it('should insert after in a single array', function() {
+      expect(Dichotomic.insert(2, [1], undefined)).toEqual(1);
+    });
+
+    it('should insert before in a single array', function() {
+      expect(Dichotomic.insert(0, [1], undefined)).toEqual(0);
+    });
+
     it('should insert in an already defined array', function() {
       var arrayInsert = [0, 2, 3, 4, 5, 6, 7, 8, 9];
       expect(Dichotomic.insert(1, arrayInsert, undefined)).toEqual(1);
@@ -128,7 +136,7 @@
 
     it('should insert at a ending of an array', function() {
       var arrayInsert = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-      expect(Dichotomic.insert(9, arrayInsert, undefined)).toEqual(10);
+      expect(Dichotomic.insert(9, arrayInsert, undefined)).toEqual(9);
       expect(Dichotomic.checkSort(arrayInsert)).toBeTruthy();
       expect(arrayInsert.length).toEqual(10);
     });
