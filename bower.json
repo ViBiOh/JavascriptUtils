@@ -1,6 +1,7 @@
 {
   "name": "JavaScriptUtils",
   "version": "0.0.1",
+  "main": "./dist/primitives.js",
   "homepage": "https://github.com/ViBiOh/JavascriptUtils",
   "authors": [
     "Vincent Boutour <vincent.boutour@gmail.com>"

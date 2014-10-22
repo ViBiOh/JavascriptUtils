@@ -1,5 +1,5 @@
 /*
-	JavaScriptUtils v0.0.1 - 2014-10-21
+	JavaScriptUtils v0.0.1 - 2014-10-22
 	by Vincent Boutour under ISC license
 	Javascript Utils Functions
 */
