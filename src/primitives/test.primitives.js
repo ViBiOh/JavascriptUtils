@@ -389,5 +389,14 @@
         });
       });
     });
+
+    describe('getRandomInt', function() {
+      it('should respect lower bound', function() {
+        expect(Primitives.getRandomInt(0, 100) >= 0).toBeTruthy();
+      });
+      it('should respect upper bound', function() {
+        expect(Primitives.getRandomInt(0, 100) <= 100).toBeTruthy();
+      });
+    });
   });
 })();
