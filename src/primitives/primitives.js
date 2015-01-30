@@ -24,6 +24,18 @@
         return Object.prototype.toString.call(value) === '[object Array]';
       }
     },
+    arrayRm: function(array, item) {
+      var self = this;
+
+      if (!self.isArray(array)) {
+        return;
+      }
+
+      var index = array.indexOf(item);
+      if (index > -1) {
+        array.splice(index, 1);
+      }
+    },
     hasValue: function(value) {
       var self = this;
 

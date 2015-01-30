@@ -398,5 +398,94 @@
         expect(Primitives.getRandomInt(0, 100) <= 100).toBeTruthy();
       });
     });
+
+    describe('arrayRm', function() {
+      it('should deal with undefined array', function() {
+        var array = undefined;
+        Primitives.arrayRm(array, undefined);
+
+        expect(array).toBeUndefined();
+      });
+      it('should deal with null array', function() {
+        var array = null;
+        Primitives.arrayRm(array, undefined);
+
+        expect(array).toBeNull();
+      });
+      it('should not remove content undefined', function() {
+        var array = [1];
+        Primitives.arrayRm(array, undefined);
+
+        expect(array).toEqual([1]);
+      });
+      it('should not remove content not present', function() {
+        var array = [1];
+        Primitives.arrayRm(array, 0);
+
+        expect(array).toEqual([1]);
+      });
+      it('should remove content of one row', function() {
+        var array = [1];
+        Primitives.arrayRm(array, 1);
+
+        expect(array).toEqual([]);
+      });
+      it('should remove object content', function() {
+        var variable = {
+          id: 4
+        };
+        var array = [variable];
+        Primitives.arrayRm(array, variable);
+
+        expect(array).toEqual([]);
+      });
+      it('should remove object content on multiple row', function() {
+        var array = [];
+        for (var i = 0; i < 10; i += 1) {
+          array.push({
+            id: i,
+            name: 'John Doe Number ' + i,
+            contact: [1, 2, 3, 4],
+            address: {
+              city: 'Paris',
+              country: 'France'
+            }
+          });
+        }
+
+        expect(array[5].id).toEqual(5);
+
+        Primitives.arrayRm(array, array[5]);
+
+        expect(array.length).toEqual(9);
+        expect(array[5].id).toEqual(6);
+      });
+      it('should not remove similar object', function() {
+        var array = [];
+        for (var i = 0; i < 10; i += 1) {
+          array.push({
+            id: i,
+            name: 'John Doe Number ' + i,
+            contact: [1, 2, 3, 4],
+            address: {
+              city: 'Paris',
+              country: 'France'
+            }
+          });
+        }
+
+        Primitives.arrayRm(array, {
+            id: 5,
+            name: 'John Doe Number ' + 5,
+            contact: [1, 2, 3, 4],
+            address: {
+              city: 'Paris',
+              country: 'France'
+            }
+          });
+
+        expect(array.length).toEqual(10);
+      });
+    });
   });
 })();
