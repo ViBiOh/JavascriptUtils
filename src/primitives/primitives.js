@@ -59,7 +59,7 @@
         if (self.isInt(value) || strValue.search(/^[+-]?[0-9]+$/) !== -1) {
           return parseInt(strValue, 10);
         }
-        if (strValue.search(/^[+-]?[0-9]*\.?[0-9]+$/) !== -1) {
+        if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
           return parseFloat(strValue);
         }
         return value;
