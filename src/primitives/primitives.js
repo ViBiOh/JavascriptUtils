@@ -90,6 +90,24 @@
     },
     getRandomInt: function(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+    asyncify: function(fn) {
+      return function() {
+        var args = [].slice.apply(arguments);
+        var callback = args[args.length - 1];
+        var result;
+        var error;
+
+        setTimeout(function() {
+          try {
+            result = fn.apply(this, args.slice(0, -1));
+          } catch (e) {
+            error = e;
+          }
+
+          callback(result, error);
+        }, 4);
+      };
     }
   };
 });

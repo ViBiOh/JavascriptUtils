@@ -487,5 +487,33 @@
         expect(array.length).toEqual(10);
       });
     });
+
+    describe('asyncify', function() {
+      beforeEach(function() {
+        jasmine.Clock.useMock();
+      });
+
+      it('should work with empty args', function() {
+        var increment = 0;
+        var asynced = false;
+        var error = false;
+
+        var async = Primitives.asyncify(function() {
+          increment += 1;
+          return 2;
+        });
+
+        expect(increment).toEqual(0);
+        async(function(res, err) {
+          asynced = true;
+          increment += res;
+          error = err !== undefined;
+        });
+        jasmine.Clock.tick(1000);
+        expect(increment).toEqual(3);
+        expect(asynced).toEqual(true);
+        expect(error).toEqual(false);
+      });
+    });
   });
 })();
