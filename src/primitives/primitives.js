@@ -93,7 +93,7 @@
     },
     asyncify: function(fn) {
       return function() {
-        var args = [].slice.apply(arguments);
+        var args = [].slice.call(arguments, 0);
         var callback = args[args.length - 1];
         var result;
         var error;
