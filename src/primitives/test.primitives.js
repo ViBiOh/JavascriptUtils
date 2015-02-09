@@ -401,7 +401,7 @@
 
     describe('arrayRm', function() {
       it('should deal with undefined array', function() {
-        var array = undefined;
+        var array;
         Primitives.arrayRm(array, undefined);
 
         expect(array).toBeUndefined();
@@ -513,6 +513,55 @@
         expect(increment).toEqual(3);
         expect(asynced).toEqual(true);
         expect(error).toEqual(false);
+      });
+
+      it('should work with one arg', function() {
+        var increment;
+        var result;
+        var asynced = false;
+        var error = false;
+
+        var async = Primitives.asyncify(function(increment) {
+          return increment * 5;
+        });
+
+        expect(increment).toBeUndefined();
+        increment = 1;
+        async(increment, function(res, err) {
+          asynced = true;
+          error = err !== undefined;
+          result = res;
+        });
+        jasmine.Clock.tick(1000);
+        expect(increment).toEqual(1);
+        expect(asynced).toEqual(true);
+        expect(error).toEqual(false);
+        expect(result).toEqual(5);
+      });
+
+      it('should handle error properly', function() {
+        var increment;
+        var result;
+        var asynced = false;
+        var error = false;
+
+        var async = Primitives.asyncify(function(increment) {
+          increment.inexistant();
+          return increment * 5;
+        });
+
+        expect(increment).toBeUndefined();
+        increment = 1;
+        async(increment, function(res, err) {
+          asynced = true;
+          error = err !== undefined;
+          result = res;
+        });
+        jasmine.Clock.tick(1000);
+        expect(increment).toEqual(1);
+        expect(asynced).toEqual(true);
+        expect(error).toEqual(true);
+        expect(result).toBeUndefined();
       });
     });
   });
