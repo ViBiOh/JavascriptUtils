@@ -53,7 +53,7 @@
           '<%= dist.dir %>**/*.js'
         ],
         options: {
-            config: '.jscsrc'
+          config: '.jscsrc'
         }
       },
 

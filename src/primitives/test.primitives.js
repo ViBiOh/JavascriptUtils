@@ -490,7 +490,11 @@
 
     describe('asyncify', function() {
       beforeEach(function() {
-        jasmine.Clock.useMock();
+        jasmine.clock().install();
+      });
+
+      afterEach(function() {
+        jasmine.clock().uninstall();
       });
 
       it('should work with empty args', function() {
@@ -509,7 +513,7 @@
           increment += res;
           error = err !== undefined;
         });
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
         expect(increment).toEqual(3);
         expect(asynced).toEqual(true);
         expect(error).toEqual(false);
@@ -532,7 +536,7 @@
           error = err !== undefined;
           result = res;
         });
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
         expect(increment).toEqual(1);
         expect(asynced).toEqual(true);
         expect(error).toEqual(false);
@@ -557,7 +561,7 @@
           error = err !== undefined;
           result = res;
         });
-        jasmine.Clock.tick(1000);
+        jasmine.clock().tick(1000);
         expect(increment).toEqual(1);
         expect(asynced).toEqual(true);
         expect(error).toEqual(true);
