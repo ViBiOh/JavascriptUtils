@@ -75,8 +75,7 @@
     // AMD predef
     "define": false,
 
-    // Home app
-    "Primitives": false,
-    "Dichotomic": false
+    //Promise API
+    "Promise": false
   }
 }

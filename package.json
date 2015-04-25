@@ -4,7 +4,12 @@
   "description": "Javascript Utils Functions",
   "main": "gruntFile.js",
   "scripts": {
-    "test": "grunt test"
+    "lint": "./node_modules/.bin/jshint src/",
+    "checkStyle": "./node_modules/.bin/jscs src/",
+    "pretest": "npm run-script lint && npm run-script checkStyle",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec test/**/*.js",
+    "uglify": "./node_modules/.bin/uglifyjs src/dichotomic.js src/primitives.js -o dist/${npm_package_name}.js -c --preamble //${npm_package_name}@${npm_package_version}",
+    "posttest": "npm run-script uglify"
   },
   "repository": {
     "type": "git",
@@ -24,17 +29,12 @@
   },
   "homepage": "https://github.com/ViBiOh/JavascriptUtils",
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-jscs": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-karma": "*",
-    "karma": "*",
-    "karma-coverage": "*",
-    "karma-jasmine": "*",
-    "karma-phantomjs-launcher": "*"
+    "chai": "*",
+    "chai-as-promised": "*",
+    "istanbul": "*",
+    "jscs": "*",
+    "jshint": "*",
+    "mocha": "*",
+    "uglify-js": "*"
   }
 }

@@ -4,7 +4,7 @@
   if (typeof define === 'function' && define.amd) {
     define(factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory;
+    module.exports = factory();
   } else {
     root.Primitives = factory();
   }
@@ -17,17 +17,8 @@
     isInt: function(value) {
       return typeof value === 'number' && (value % 1) === 0;
     },
-    isArray: function(value) {
-      if (Array.isArray) {
-        return Array.isArray(value);
-      } else {
-        return Object.prototype.toString.call(value) === '[object Array]';
-      }
-    },
     arrayRm: function(array, item) {
-      var self = this;
-
-      if (!self.isArray(array)) {
+      if (!Array.isArray(array)) {
         return;
       }
 
@@ -37,15 +28,13 @@
       }
     },
     hasValue: function(value) {
-      var self = this;
-
-      return value !== undefined && value !== null && (self.isArray(value) || String(value) !== '');
+      return value !== undefined && value !== null && (Array.isArray(value) || String(value) !== '');
     },
     inspectValue: function(value) {
       var self = this;
 
       if (value !== undefined && value !== null) {
-        if (self.isArray(value)) {
+        if (Array.isArray(value)) {
           return value;
         }
 
@@ -67,7 +56,7 @@
       return undefined;
     },
     isAssociativeArray: function(value) {
-      return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || value instanceof Array);
+      return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
     },
     extend: function(destination, append) {
       var self = this;
@@ -94,19 +83,17 @@
     asyncify: function(fn) {
       return function() {
         var args = [].slice.call(arguments, 0);
-        var callback = args[args.length - 1];
-        var result;
-        var error;
+        var promise = new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            try {
+              resolve(fn.apply(this, args));
+            } catch (e) {
+              reject(e);
+            }
+          }, 4);
+        });
 
-        setTimeout(function() {
-          try {
-            result = fn.apply(this, args.slice(0, -1));
-          } catch (e) {
-            error = e;
-          }
-
-          callback(result, error);
-        }, 4);
+        return promise;
       };
     }
   };
