@@ -8,7 +8,7 @@
     "checkStyle": "./node_modules/.bin/jscs src/",
     "pretest": "npm run-script lint && npm run-script checkStyle",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec test/**/*.js",
-    "uglify": "./node_modules/.bin/uglifyjs src/dichotomic.js src/primitives.js -o dist/${npm_package_name}.js -c --preamble //${npm_package_name}@${npm_package_version}",
+    "uglify": "./node_modules/.bin/uglifyjs src/dichotomic.js src/primitives.js -o ${npm_package_name}.js -c --preamble //${npm_package_name}@${npm_package_version}",
     "posttest": "npm run-script uglify"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "url": "https://github.com/ViBiOh/JavascriptUtils/issues"
   },
   "homepage": "https://github.com/ViBiOh/JavascriptUtils",
+  "main": "${npm_package_name}.js",
   "devDependencies": {
     "chai": "*",
     "chai-as-promised": "*",
