@@ -1,5 +1,5 @@
 {
-  "name": "JavaScriptUtils",
+  "name": "jsUtils",
   "version": "0.0.1",
   "description": "Javascript Utils Functions",
   "main": "gruntFile.js",
