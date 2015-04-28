@@ -135,6 +135,10 @@
         expect(Primitives.inspectValue('0.000001')).to.be.equal(0.000001);
       });
 
+      it('should convert positive float to float', function() {
+        expect(Primitives.inspectValue('+10.10')).to.be.equal(10.10);
+      });
+
       it('should convert negative float to float', function() {
         expect(Primitives.inspectValue('-10.10')).to.be.equal(-10.10);
       });

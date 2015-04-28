@@ -45,10 +45,10 @@
         if (strValue === 'false') {
           return false;
         }
-        if (self.isInt(value) || strValue.search(/^[+-]?[0-9]+$/) !== -1) {
+        if (self.isInt(value) || strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
           return parseInt(strValue, 10);
         }
-        if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
+        if (strValue.search(/^[\+\-]?[0-9]*\.[0-9]+$/) !== -1) {
           return parseFloat(strValue);
         }
         return value;
@@ -83,17 +83,9 @@
     asyncify: function(fn) {
       return function() {
         var args = [].slice.call(arguments, 0);
-        var promise = new Promise(function(resolve, reject) {
-          setTimeout(function() {
-            try {
-              resolve(fn.apply(this, args));
-            } catch (e) {
-              reject(e);
-            }
-          }, 4);
+        return new Promise(function(resolve) {
+          resolve(fn.apply(this, args));
         });
-
-        return promise;
       };
     }
   };
