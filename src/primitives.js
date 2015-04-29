@@ -15,7 +15,7 @@
 
   return {
     isInt: function(value) {
-      return typeof value === 'number' && (value % 1) === 0;
+      return 'number' === typeof value && 0 === (value % 1);
     },
     arrayRm: function(array, item) {
       if (!Array.isArray(array)) {
@@ -28,21 +28,21 @@
       }
     },
     hasValue: function(value) {
-      return value !== undefined && value !== null && (Array.isArray(value) || String(value) !== '');
+      return undefined !== value && null !== value && (Array.isArray(value) || '' !== String(value));
     },
     inspectValue: function(value) {
       var self = this;
 
-      if (value !== undefined && value !== null) {
+      if (undefined !== value && null !== value) {
         if (Array.isArray(value)) {
           return value;
         }
 
         var strValue = String(value);
-        if (strValue === '' || strValue === 'true') {
+        if ('' === strValue || 'true' === strValue) {
           return true;
         }
-        if (strValue === 'false') {
+        if ('false' === strValue) {
           return false;
         }
         if (self.isInt(value) || strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
@@ -56,7 +56,7 @@
       return undefined;
     },
     isAssociativeArray: function(value) {
-      return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
+      return 'object' === typeof value && null !== value  && !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
     },
     extend: function(destination, append) {
       var self = this;
