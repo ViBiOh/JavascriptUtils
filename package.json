@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/jshint src/",
-    "checkStyle": "./node_modules/.bin/jscs src/",
     "eslint": "./node_modules/.bin/eslint src/",
+    "checkStyle": "./node_modules/.bin/jscs src/",
     "pretest": "npm run lint && npm run eslint && npm run checkStyle",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec test/**/*.js",
     "uglify": "./node_modules/.bin/uglifyjs src/primitives.js -o index.js -c --preamble //${npm_package_name}@${npm_package_version}",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ViBiOh/JavascriptUtils.git"
+    "url": "git://github.com/ViBiOh/jsUtils.git"
   },
   "keywords": [
     "utils",
@@ -23,9 +23,9 @@
   "author": "Vincent Boutour",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ViBiOh/JavascriptUtils/issues"
+    "url": "https://github.com/ViBiOh/jsUtils/issues"
   },
-  "homepage": "https://github.com/ViBiOh/JavascriptUtils",
+  "homepage": "https://github.com/ViBiOh/jsUtils",
   "devDependencies": {
     "chai": "latest",
     "chai-as-promised": "latest",
