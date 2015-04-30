@@ -6,10 +6,11 @@
   "scripts": {
     "lint": "./node_modules/.bin/jshint src/",
     "checkStyle": "./node_modules/.bin/jscs src/",
-    "pretest": "npm run-script lint && npm run-script checkStyle",
+    "eslint": "./node_modules/.bin/eslint src/",
+    "pretest": "npm run lint && npm run eslint && npm run checkStyle",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec test/**/*.js",
     "uglify": "./node_modules/.bin/uglifyjs src/primitives.js -o index.js -c --preamble //${npm_package_name}@${npm_package_version}",
-    "posttest": "npm run-script uglify"
+    "posttest": "npm run uglify"
   },
   "repository": {
     "type": "git",
@@ -25,14 +26,14 @@
     "url": "https://github.com/ViBiOh/JavascriptUtils/issues"
   },
   "homepage": "https://github.com/ViBiOh/JavascriptUtils",
-  "main": "index.js",
   "devDependencies": {
-    "chai": "*",
-    "chai-as-promised": "*",
-    "istanbul": "*",
-    "jscs": "*",
-    "jshint": "*",
-    "mocha": "*",
-    "uglify-js": "*"
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "jscs": "latest",
+    "jshint": "latest",
+    "mocha": "latest",
+    "uglify-js": "latest"
   }
 }
