@@ -10,55 +10,55 @@
   describe('Primitives', function() {
     var Primitives = require('../src/primitives.js');
 
-    describe('isInt', function() {
+    describe('getInt', function() {
       it('should say if udefined is an int', function() {
-        expect(Primitives.isInt(undefined)).to.be.false;
+        expect(Primitives.getInt(undefined)).to.be.null;
       });
 
       it('should say if udefined is an int', function() {
-        expect(Primitives.isInt(null)).to.be.false;
+        expect(Primitives.getInt(null)).to.be.null;
       });
 
       it('should say if empty string is an int', function() {
-        expect(Primitives.isInt('')).to.be.false;
+        expect(Primitives.getInt('')).to.be.null;
       });
 
       it('should say if object is an int', function() {
-        expect(Primitives.isInt({})).to.be.false;
+        expect(Primitives.getInt({})).to.be.null;
       });
 
       it('should say if defined object is an int', function() {
-        expect(Primitives.isInt({
+        expect(Primitives.getInt({
           value: 0
-        })).to.be.false;
+        })).to.be.null;
       });
 
       it('should say if array is an int', function() {
-        expect(Primitives.isInt([])).to.be.false;
+        expect(Primitives.getInt([])).to.be.null;
       });
 
       it('should say if double is an int', function() {
-        expect(Primitives.isInt(0.1)).to.be.false;
+        expect(Primitives.getInt(0.1)).to.be.null;
       });
 
       it('should say if NaN is an int', function() {
-        expect(Primitives.isInt(NaN)).to.be.false;
+        expect(Primitives.getInt(NaN)).to.be.null;
       });
 
       it('should say if zero is an int', function() {
-        expect(Primitives.isInt(0)).to.be.true;
+        expect(Primitives.getInt(0)).to.be.equal(0);
       });
 
       it('should say if number is an int', function() {
-        expect(Primitives.isInt(8000)).to.be.true;
+        expect(Primitives.getInt(8000)).to.be.equal(8000);
       });
 
       it('should say if negative number is an int', function() {
-        expect(Primitives.isInt(-50)).to.be.true;
+        expect(Primitives.getInt(-50)).to.be.equal(-50);
       });
 
       it('should say if pow is an int', function() {
-        expect(Primitives.isInt(1e8)).to.be.true;
+        expect(Primitives.getInt(1e8)).to.be.equal(1e8);
       });
     });
 

@@ -14,8 +14,17 @@
   var keyExists = {}.hasOwnProperty;
 
   return {
-    isInt: function(value) {
-      return typeof value === 'number' && value % 1 === 0;
+    getInt: function(value) {
+      if (typeof value === 'number' && value % 1 === 0) {
+        return value;
+      }
+
+      var strValue = String(value);
+      if (strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
+        return parseInt(strValue, 10);
+      }
+
+      return null;
     },
     arrayRm: function(array, item) {
       if (!Array.isArray(array)) {
@@ -45,8 +54,9 @@
         if (strValue === 'false') {
           return false;
         }
-        if (self.isInt(value) || strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
-          return parseInt(strValue, 10);
+        var intValue = self.getInt(value);
+        if (intValue !== null) {
+          return intValue;
         }
         if (strValue.search(/^[\+\-]?[0-9]*\.[0-9]+$/) !== -1) {
           return parseFloat(strValue);
