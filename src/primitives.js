@@ -96,6 +96,19 @@
           resolve(fn.apply(this, args));
         });
       };
+    },
+    stringify: function(obj, space) {
+      var objectCache = [];
+
+      return JSON.stringify(obj, function(key, value) {
+        if (typeof value === 'object' && value !== null) {
+          if (objectCache.indexOf(value) !== -1) {
+            return '[Circular]';
+          }
+          objectCache.push(value);
+        }
+        return value;
+      }, space);
     }
   };
 });
