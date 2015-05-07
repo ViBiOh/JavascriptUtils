@@ -100,10 +100,11 @@
     asyncifyCallback: function(fn) {
       return function() {
         var args = [].slice.call(arguments, 0);
-        return new Promise(function(resolve) {
+        return new Promise(function(resolve, reject) {
           args.push(function(err, res) {
             if (err) {
-              throw err;
+              reject(err);
+              return;
             }
             resolve(res);
           });
