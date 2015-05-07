@@ -470,8 +470,7 @@
 
       it('should handle error properly', function() {
         var async = Primitives.asyncify(function(increment) {
-          increment.inexistant();
-          return increment * 5;
+          throw 'error';
         });
 
         return async(1).then(function(result) {
@@ -511,8 +510,7 @@
       it('should handle error properly', function() {
         var async = Primitives.asyncifyCallback(function(increment, callback) {
           try {
-            increment.inexistant();
-            callback(null, increment * 5);
+            throw 'error';
           } catch (e) {
             callback(e, null);
           }
