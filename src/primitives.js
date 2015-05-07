@@ -93,7 +93,21 @@
       return function() {
         var args = [].slice.call(arguments, 0);
         return new Promise(function(resolve) {
-          resolve(fn.apply(this, args));
+          resolve(fn.apply(null, args));
+        });
+      };
+    },
+    asyncifyCallback: function(fn) {
+      return function() {
+        var args = [].slice.call(arguments, 0);
+        return new Promise(function(resolve) {
+          args.push(function(err, res) {
+            if (err) {
+              throw err;
+            }
+            resolve(res);
+          });
+          fn.apply(null, args);
         });
       };
     },

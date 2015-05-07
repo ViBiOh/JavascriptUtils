@@ -482,6 +482,50 @@
       });
     });
 
+    describe('asyncifyCallback', function() {
+      it('should work with empty args', function() {
+        var increment = 0;
+        var async = Primitives.asyncifyCallback(function(callback) {
+          increment += 1;
+          callback(null, 2);
+        });
+
+        return async().then(function(result) {
+          expect(result).to.be.equal(2);
+          expect(increment).to.be.equal(1);
+        });
+      });
+
+      it('should work with one arg', function() {
+        var async = Primitives.asyncifyCallback(function(increment, callback) {
+          callback(null, increment * 5);
+        });
+
+        var init = 1;
+        return async(init).then(function(result) {
+          expect(init).to.be.equal(1);
+          expect(result).to.be.equal(5);
+        });
+      });
+
+      it('should handle error properly', function() {
+        var async = Primitives.asyncifyCallback(function(increment, callback) {
+          try {
+            increment.inexistant();
+            callback(null, increment * 5);
+          } catch (e) {
+            callback(e, null);
+          }
+        });
+
+        return async(1).then(function(result) {
+          expect(false).to.be.true;
+        }, function(error) {
+          expect(error).to.be.defined;
+        });
+      });
+    });
+
     describe('stringify', function() {
       it('should stringify a basic object', function() {
         var result = Primitives.stringify({
