@@ -92,8 +92,12 @@
     asyncify: function(fn) {
       return function() {
         var args = [].slice.call(arguments, 0);
-        return new Promise(function(resolve) {
-          resolve(fn.apply(null, args));
+        return new Promise(function(resolve, reject) {
+          try {
+            resolve(fn.apply(null, args));
+          } catch (e) {
+            reject(e);
+          }
         });
       };
     },
