@@ -94,7 +94,7 @@
         var args = [].slice.call(arguments, 0);
         return new Promise(function(resolve, reject) {
           try {
-            resolve(fn.apply(null, args));
+            resolve(fn.apply(this, args));
           } catch (e) {
             reject(e);
           }
@@ -112,7 +112,7 @@
             }
             resolve(res);
           });
-          fn.apply(null, args);
+          fn.apply(this, args);
         });
       };
     },
