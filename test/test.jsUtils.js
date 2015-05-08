@@ -7,228 +7,228 @@
 
   var expect = chai.expect;
 
-  describe('Primitives', function() {
-    var Primitives = require('../src/primitives.js');
+  describe('jsUtils', function() {
+    var jsUtils = require('../src/jsUtils.js');
 
     describe('getInt', function() {
       it('should say if udefined is an int', function() {
-        expect(Primitives.getInt(undefined)).to.be.null;
+        expect(jsUtils.getInt(undefined)).to.be.null;
       });
 
       it('should say if udefined is an int', function() {
-        expect(Primitives.getInt(null)).to.be.null;
+        expect(jsUtils.getInt(null)).to.be.null;
       });
 
       it('should say if empty string is an int', function() {
-        expect(Primitives.getInt('')).to.be.null;
+        expect(jsUtils.getInt('')).to.be.null;
       });
 
       it('should say if object is an int', function() {
-        expect(Primitives.getInt({})).to.be.null;
+        expect(jsUtils.getInt({})).to.be.null;
       });
 
       it('should say if defined object is an int', function() {
-        expect(Primitives.getInt({
+        expect(jsUtils.getInt({
           value: 0
         })).to.be.null;
       });
 
       it('should say if array is an int', function() {
-        expect(Primitives.getInt([])).to.be.null;
+        expect(jsUtils.getInt([])).to.be.null;
       });
 
       it('should say if double is an int', function() {
-        expect(Primitives.getInt(0.1)).to.be.null;
+        expect(jsUtils.getInt(0.1)).to.be.null;
       });
 
       it('should say if NaN is an int', function() {
-        expect(Primitives.getInt(NaN)).to.be.null;
+        expect(jsUtils.getInt(NaN)).to.be.null;
       });
 
       it('should say if zero is an int', function() {
-        expect(Primitives.getInt(0)).to.be.equal(0);
+        expect(jsUtils.getInt(0)).to.be.equal(0);
       });
 
       it('should say if number is an int', function() {
-        expect(Primitives.getInt(8000)).to.be.equal(8000);
+        expect(jsUtils.getInt(8000)).to.be.equal(8000);
       });
 
       it('should say if negative number is an int', function() {
-        expect(Primitives.getInt(-50)).to.be.equal(-50);
+        expect(jsUtils.getInt(-50)).to.be.equal(-50);
       });
 
       it('should say if pow is an int', function() {
-        expect(Primitives.getInt(1e8)).to.be.equal(1e8);
+        expect(jsUtils.getInt(1e8)).to.be.equal(1e8);
       });
     });
 
     describe('inspectValue', function() {
       it('should not convert undefined', function() {
-        expect(Primitives.inspectValue(undefined)).to.be.undefined;
+        expect(jsUtils.inspectValue(undefined)).to.be.undefined;
       });
 
       it('should not convert null', function() {
-        expect(Primitives.inspectValue(null)).to.be.undefined;
+        expect(jsUtils.inspectValue(null)).to.be.undefined;
       });
 
       it('should not convert obj', function() {
-        expect(Primitives.inspectValue({})).to.be.eql({});
+        expect(jsUtils.inspectValue({})).to.be.eql({});
       });
 
       it('should not convert array', function() {
-        expect(Primitives.inspectValue([])).to.be.eql([]);
+        expect(jsUtils.inspectValue([])).to.be.eql([]);
       });
 
       it('should not convert NaN', function() {
-        expect(isNaN(Primitives.inspectValue(NaN))).to.be.true;
+        expect(isNaN(jsUtils.inspectValue(NaN))).to.be.true;
       });
 
       it('should convert empty string to true', function() {
-        expect(Primitives.inspectValue('')).to.be.equal(true);
+        expect(jsUtils.inspectValue('')).to.be.equal(true);
       });
 
       it('should convert true to true', function() {
-        expect(Primitives.inspectValue('true')).to.be.equal(true);
+        expect(jsUtils.inspectValue('true')).to.be.equal(true);
       });
 
       it('should convert false to false', function() {
-        expect(Primitives.inspectValue('false')).to.be.equal(false);
+        expect(jsUtils.inspectValue('false')).to.be.equal(false);
       });
 
       it('should convert zero to number', function() {
-        expect(Primitives.inspectValue(0)).to.be.equal(0);
+        expect(jsUtils.inspectValue(0)).to.be.equal(0);
       });
 
       it('should convert negative number to number', function() {
-        expect(Primitives.inspectValue(-10)).to.be.equal(-10);
+        expect(jsUtils.inspectValue(-10)).to.be.equal(-10);
       });
 
       it('should convert positive number to number', function() {
-        expect(Primitives.inspectValue(10)).to.be.equal(10);
+        expect(jsUtils.inspectValue(10)).to.be.equal(10);
       });
 
       it('should convert string to number', function() {
-        expect(Primitives.inspectValue('0')).to.be.equal(0);
+        expect(jsUtils.inspectValue('0')).to.be.equal(0);
       });
 
       it('should convert negative string to number', function() {
-        expect(Primitives.inspectValue('-10')).to.be.equal(-10);
+        expect(jsUtils.inspectValue('-10')).to.be.equal(-10);
       });
 
       it('should convert positive string to number', function() {
-        expect(Primitives.inspectValue('10')).to.be.equal(10);
+        expect(jsUtils.inspectValue('10')).to.be.equal(10);
       });
 
       it('should convert zero to float', function() {
-        expect(Primitives.inspectValue(0.0)).to.be.equal(0.0);
+        expect(jsUtils.inspectValue(0.0)).to.be.equal(0.0);
       });
 
       it('should convert negative float to float', function() {
-        expect(Primitives.inspectValue(-10.05)).to.be.equal(-10.05);
+        expect(jsUtils.inspectValue(-10.05)).to.be.equal(-10.05);
       });
 
       it('should convert positive float to float', function() {
-        expect(Primitives.inspectValue(10.1)).to.be.equal(10.1);
+        expect(jsUtils.inspectValue(10.1)).to.be.equal(10.1);
       });
 
       it('should convert string to float', function() {
-        expect(Primitives.inspectValue('0.000001')).to.be.equal(0.000001);
+        expect(jsUtils.inspectValue('0.000001')).to.be.equal(0.000001);
       });
 
       it('should convert positive float to float', function() {
-        expect(Primitives.inspectValue('+10.10')).to.be.equal(10.10);
+        expect(jsUtils.inspectValue('+10.10')).to.be.equal(10.10);
       });
 
       it('should convert negative float to float', function() {
-        expect(Primitives.inspectValue('-10.10')).to.be.equal(-10.10);
+        expect(jsUtils.inspectValue('-10.10')).to.be.equal(-10.10);
       });
 
       it('should convert positive float to float', function() {
-        expect(Primitives.inspectValue('10.2')).to.be.equal(10.2);
+        expect(jsUtils.inspectValue('10.2')).to.be.equal(10.2);
       });
 
       it('should convert positive float without unit to float', function() {
-        expect(Primitives.inspectValue('.2')).to.be.equal(0.2);
+        expect(jsUtils.inspectValue('.2')).to.be.equal(0.2);
       });
     });
 
     describe('hasValue', function() {
       it('should say undefined has no value', function() {
-        expect(Primitives.hasValue(undefined)).to.be.false;
+        expect(jsUtils.hasValue(undefined)).to.be.false;
       });
 
       it('should say null has no value', function() {
-        expect(Primitives.hasValue(null)).to.be.false;
+        expect(jsUtils.hasValue(null)).to.be.false;
       });
 
       it('should say empty string has no value', function() {
-        expect(Primitives.hasValue('')).to.be.false;
+        expect(jsUtils.hasValue('')).to.be.false;
       });
 
       it('should say string has value', function() {
-        expect(Primitives.hasValue('test')).to.be.true;
+        expect(jsUtils.hasValue('test')).to.be.true;
       });
 
       it('should say zero has value', function() {
-        expect(Primitives.hasValue(0)).to.be.true;
+        expect(jsUtils.hasValue(0)).to.be.true;
       });
 
       it('should say NaN has value', function() {
-        expect(Primitives.hasValue(NaN)).to.be.true;
+        expect(jsUtils.hasValue(NaN)).to.be.true;
       });
 
       it('should say empty obj has value', function() {
-        expect(Primitives.hasValue({})).to.be.true;
+        expect(jsUtils.hasValue({})).to.be.true;
       });
 
       it('should say empty array has value', function() {
-        expect(Primitives.hasValue([])).to.be.true;
+        expect(jsUtils.hasValue([])).to.be.true;
       });
 
       it('should say true has value', function() {
-        expect(Primitives.hasValue(true)).to.be.true;
+        expect(jsUtils.hasValue(true)).to.be.true;
       });
 
       it('should say false has value', function() {
-        expect(Primitives.hasValue(false)).to.be.true;
+        expect(jsUtils.hasValue(false)).to.be.true;
       });
     });
 
     describe('isAssociativeArray', function() {
       it('should say undefined is not an aa', function() {
-        expect(Primitives.isAssociativeArray(undefined)).to.be.false;
+        expect(jsUtils.isAssociativeArray(undefined)).to.be.false;
       });
 
       it('should say null is not an aa', function() {
-        expect(Primitives.isAssociativeArray(null)).to.be.false;
+        expect(jsUtils.isAssociativeArray(null)).to.be.false;
       });
 
       it('should say empty string is not an aa', function() {
-        expect(Primitives.isAssociativeArray('')).to.be.false;
+        expect(jsUtils.isAssociativeArray('')).to.be.false;
       });
 
       it('should say string is not an aa', function() {
-        expect(Primitives.isAssociativeArray('test')).to.be.false;
+        expect(jsUtils.isAssociativeArray('test')).to.be.false;
       });
 
       it('should say zero is not an aa', function() {
-        expect(Primitives.isAssociativeArray(0)).to.be.false;
+        expect(jsUtils.isAssociativeArray(0)).to.be.false;
       });
 
       it('should say number is not an aa', function() {
-        expect(Primitives.isAssociativeArray(8000)).to.be.false;
+        expect(jsUtils.isAssociativeArray(8000)).to.be.false;
       });
 
       it('should say NaN is not an aa', function() {
-        expect(Primitives.isAssociativeArray(NaN)).to.be.false;
+        expect(jsUtils.isAssociativeArray(NaN)).to.be.false;
       });
 
       it('should say empty obj is an aa', function() {
-        expect(Primitives.isAssociativeArray({})).to.be.true;
+        expect(jsUtils.isAssociativeArray({})).to.be.true;
       });
 
       it('should say empty array is not an aa', function() {
-        expect(Primitives.isAssociativeArray([])).to.be.false;
+        expect(jsUtils.isAssociativeArray([])).to.be.false;
       });
     });
 
@@ -236,7 +236,7 @@
       it('should throw exception when undefined params', function() {
         var failed = false;
         try {
-          Primitives.extend(undefined, undefined);
+          jsUtils.extend(undefined, undefined);
         } catch (err) {
           failed = true;
         }
@@ -246,7 +246,7 @@
       it('should throw exception when first undefined param', function() {
         var failed = false;
         try {
-          Primitives.extend({}, null);
+          jsUtils.extend({}, null);
         } catch (err) {
           failed = true;
         }
@@ -256,7 +256,7 @@
       it('should throw exception when second undefined param', function() {
         var failed = false;
         try {
-          Primitives.extend(true, {});
+          jsUtils.extend(true, {});
         } catch (err) {
           failed = true;
         }
@@ -264,11 +264,11 @@
       });
 
       it('should extend two empty object', function() {
-        expect(Primitives.extend({}, {})).to.be.eql({});
+        expect(jsUtils.extend({}, {})).to.be.eql({});
       });
 
       it('should extend two simple objects', function() {
-        expect(Primitives.extend({
+        expect(jsUtils.extend({
           id: 1, name: 'Test'
         }, {
           id: 2, mail: 'test@localhost'
@@ -278,7 +278,7 @@
       });
 
       it('should extend two objects with one sub-objects', function() {
-        expect(Primitives.extend({
+        expect(jsUtils.extend({
           id: 1, name: 'Test'
         }, {
           id: 2, contact: {
@@ -292,7 +292,7 @@
       });
 
       it('should extend two objects with undefined force', function() {
-        expect(Primitives.extend({
+        expect(jsUtils.extend({
           id: 1, name: 'Test', contact: {
             mail: 'test@localhost'
           }
@@ -304,7 +304,7 @@
       });
 
       it('should extend two objects with sub-objects', function() {
-        expect(Primitives.extend({
+        expect(jsUtils.extend({
           id: 1,
           name: 'Test',
           contact: {
@@ -338,7 +338,7 @@
           return 'test string';
         };
 
-        expect(Primitives.extend({}, new RawObject())).to.be.eql({
+        expect(jsUtils.extend({}, new RawObject())).to.be.eql({
           id: 8000
         });
       });
@@ -346,41 +346,41 @@
 
     describe('getRandomInt', function() {
       it('should respect lower bound', function() {
-        expect(Primitives.getRandomInt(0, 100) >= 0).to.be.true;
+        expect(jsUtils.getRandomInt(0, 100) >= 0).to.be.true;
       });
       it('should respect upper bound', function() {
-        expect(Primitives.getRandomInt(0, 100) <= 100).to.be.true;
+        expect(jsUtils.getRandomInt(0, 100) <= 100).to.be.true;
       });
     });
 
     describe('arrayRm', function() {
       it('should deal with undefined array', function() {
         var array;
-        Primitives.arrayRm(array, undefined);
+        jsUtils.arrayRm(array, undefined);
 
         expect(array).to.be.undefined;
       });
       it('should deal with null array', function() {
         var array = null;
-        Primitives.arrayRm(array, undefined);
+        jsUtils.arrayRm(array, undefined);
 
         expect(array).to.be.null;
       });
       it('should not remove content undefined', function() {
         var array = [1];
-        Primitives.arrayRm(array, undefined);
+        jsUtils.arrayRm(array, undefined);
 
         expect(array).to.be.eql([1]);
       });
       it('should not remove content not present', function() {
         var array = [1];
-        Primitives.arrayRm(array, 0);
+        jsUtils.arrayRm(array, 0);
 
         expect(array).to.be.eql([1]);
       });
       it('should remove content of one row', function() {
         var array = [1];
-        Primitives.arrayRm(array, 1);
+        jsUtils.arrayRm(array, 1);
 
         expect(array).to.be.eql([]);
       });
@@ -389,7 +389,7 @@
           id: 4
         };
         var array = [variable];
-        Primitives.arrayRm(array, variable);
+        jsUtils.arrayRm(array, variable);
 
         expect(array).to.be.eql([]);
       });
@@ -409,7 +409,7 @@
 
         expect(array[5].id).to.be.equal(5);
 
-        Primitives.arrayRm(array, array[5]);
+        jsUtils.arrayRm(array, array[5]);
 
         expect(array.length).to.be.equal(9);
         expect(array[5].id).to.be.equal(6);
@@ -428,7 +428,7 @@
           });
         }
 
-        Primitives.arrayRm(array, {
+        jsUtils.arrayRm(array, {
             id: 5,
             name: 'John Doe Number ' + 5,
             contact: [1, 2, 3, 4],
@@ -445,7 +445,7 @@
     describe('asyncify', function() {
       it('should work with empty args', function() {
         var increment = 0;
-        var async = Primitives.asyncify(function() {
+        var async = jsUtils.asyncify(function() {
           increment += 1;
           return 2;
         });
@@ -457,7 +457,7 @@
       });
 
       it('should work with one arg', function() {
-        var async = Primitives.asyncify(function(increment) {
+        var async = jsUtils.asyncify(function(increment) {
           return increment * 5;
         });
 
@@ -469,7 +469,7 @@
       });
 
       it('should handle error properly', function() {
-        var async = Primitives.asyncify(function(increment) {
+        var async = jsUtils.asyncify(function(increment) {
           throw 'error';
         });
 
@@ -484,7 +484,7 @@
     describe('asyncifyCallback', function() {
       it('should work with empty args', function() {
         var increment = 0;
-        var async = Primitives.asyncifyCallback(function(callback) {
+        var async = jsUtils.asyncifyCallback(function(callback) {
           increment += 1;
           callback(null, 2);
         });
@@ -496,7 +496,7 @@
       });
 
       it('should work with one arg', function() {
-        var async = Primitives.asyncifyCallback(function(increment, callback) {
+        var async = jsUtils.asyncifyCallback(function(increment, callback) {
           callback(null, increment * 5);
         });
 
@@ -508,7 +508,7 @@
       });
 
       it('should handle error properly', function() {
-        var async = Primitives.asyncifyCallback(function(increment, callback) {
+        var async = jsUtils.asyncifyCallback(function(increment, callback) {
           try {
             throw 'error';
           } catch (e) {
@@ -526,7 +526,7 @@
 
     describe('stringify', function() {
       it('should stringify a basic object', function() {
-        var result = Primitives.stringify({
+        var result = jsUtils.stringify({
           id: 8000,
           name: 'Bob'
         });
@@ -535,7 +535,7 @@
       });
 
       it('should stringify with given space', function() {
-        var result = Primitives.stringify({
+        var result = jsUtils.stringify({
           id: 8000,
           name: 'Bob'
         }, '  ');
@@ -548,7 +548,7 @@
           id: 8000
         };
         circularObject.child = circularObject;
-        var result = Primitives.stringify(circularObject);
+        var result = jsUtils.stringify(circularObject);
 
         expect(result).to.be.eql('{"id":8000,"child":"[Circular]"}');
       });

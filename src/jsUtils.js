@@ -89,19 +89,19 @@
     getRandomInt: function(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
-    asyncify: function(fn) {
+    asyncify: function(fn, bind) {
       return function() {
         var args = [].slice.call(arguments, 0);
         return new Promise(function(resolve, reject) {
           try {
-            resolve(fn.apply(this, args));
+            resolve(fn.apply(bind || null, args));
           } catch (e) {
             reject(e);
           }
         });
       };
     },
-    asyncifyCallback: function(fn) {
+    asyncifyCallback: function(fn, bind) {
       return function() {
         var args = [].slice.call(arguments, 0);
         return new Promise(function(resolve, reject) {
@@ -112,7 +112,7 @@
             }
             resolve(res);
           });
-          fn.apply(this, args);
+          fn.apply(bind || null, args);
         });
       };
     },

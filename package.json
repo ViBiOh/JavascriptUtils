@@ -9,7 +9,7 @@
     "jscs": "./node_modules/.bin/jscs src/",
     "pretest": "npm run jshint && npm run eslint && npm run jscs",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec",
-    "build:uglify": "./node_modules/.bin/uglifyjs src/primitives.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
+    "build:uglify": "./node_modules/.bin/uglifyjs src/jsUtils.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
     "build": "npm run test && npm run build:uglify"
   },
   "repository": {
