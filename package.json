@@ -1,5 +1,5 @@
 {
-  "name": "jsUtils",
+  "name": "js-utils",
   "version": "0.0.1",
   "description": "Javascript Utils Functions",
   "main": "index.js",
@@ -14,18 +14,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ViBiOh/jsUtils.git"
+    "url": "git://github.com/ViBiOh/js-utils.git"
   },
   "keywords": [
-    "utils",
-    "commons"
+    "js",
+    "utils"
   ],
-  "author": "Vincent Boutour",
+  "author": "Vincent Boutour <vincent.boutour@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ViBiOh/jsUtils/issues"
+    "url": "https://github.com/ViBiOh/js-utils/issues"
   },
-  "homepage": "https://github.com/ViBiOh/jsUtils",
+  "homepage": "https://github.com/ViBiOh/js-utils",
   "devDependencies": {
     "chai": "latest",
     "chai-as-promised": "latest",

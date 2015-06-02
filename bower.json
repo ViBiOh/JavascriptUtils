@@ -1,0 +1,22 @@
+{
+  "name": "js-utils",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ViBiOh/js-utils",
+  "authors": [
+    "Vincent Boutour <vincent.boutour@gmail.com>"
+  ],
+  "description": "JavaScript utils functions",
+  "keywords": [
+    "js",
+    "utils"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
