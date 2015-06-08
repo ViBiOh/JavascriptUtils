@@ -1,6 +1,6 @@
 # jsUtils
 
-[![Build Status](https://travis-ci.org/ViBiOh/jsUtils.svg?branch=master)](https://travis-ci.org/ViBiOh/jsUtils)
+[![Build Status](https://travis-ci.org/ViBiOh/js-utils.svg?branch=master)](https://travis-ci.org/ViBiOh/js-utils)
 
 Useful and commons functions reusable for JS project (frontend & backend).
 
