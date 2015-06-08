@@ -8,9 +8,10 @@
     "eslint": "./node_modules/.bin/eslint src/",
     "jscs": "./node_modules/.bin/jscs src/",
     "pretest": "npm run jshint && npm run eslint && npm run jscs",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec",
-    "build:uglify": "./node_modules/.bin/uglifyjs src/jsUtils.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
-    "build": "npm run test && npm run build:uglify"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel/register -R spec",
+    "build:es6": "cp ./src/jsUtils.js index.js",
+    "build:uglify": "./node_modules/.bin/babel ./src/jsUtils.js | ./node_modules/.bin/uglifyjs -o index_babel.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
+    "build": "npm run test && npm run build:es6 && npm run build:uglify"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
   },
   "homepage": "https://github.com/ViBiOh/js-utils",
   "devDependencies": {
-    "chai": "latest",
+    "babel": "latest",
+    "chai": "*",
     "chai-as-promised": "latest",
     "eslint": "latest",
     "istanbul": "latest",

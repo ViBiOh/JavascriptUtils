@@ -1,2 +1,122 @@
-//js-utils@0.0.1
-!function(n,r){"use strict";"function"==typeof define&&define.amd?define(r):"object"==typeof exports?module.exports=r():n.Primitives=r()}(this,function(){"use strict";var n={}.hasOwnProperty;return{getInt:function(n){if("number"==typeof n&&n%1===0)return n;var r=String(n);return-1!==r.search(/^[\+\-]?[0-9]+$/)?parseInt(r,10):null},arrayRm:function(n,r){if(Array.isArray(n)){var t=n.indexOf(r);t>-1&&n.splice(t,1)}},hasValue:function(n){return"undefined"!=typeof n&&null!==n&&(Array.isArray(n)||""!==String(n))},inspectValue:function(n){var r=this;if("undefined"!=typeof n&&null!==n){if(Array.isArray(n))return n;var t=String(n);if(""===t||"true"===t)return!0;if("false"===t)return!1;var e=r.getInt(n);return null!==e?e:-1!==t.search(/^[\+\-]?[0-9]*\.[0-9]+$/)?parseFloat(t):n}},isAssociativeArray:function(n){return"object"==typeof n&&null!==n&&!(n instanceof String||n instanceof Boolean||n instanceof Number||Array.isArray(n))},extend:function(r,t){var e=this;if(!e.isAssociativeArray(r)||!e.isAssociativeArray(t))throw"Invalid extend between <"+r+"> and <"+t+">";for(var i in t)n.call(t,i)&&(n.call(r,i)&&e.isAssociativeArray(t[i])&&e.isAssociativeArray(r[i])?e.extend(r[i],t[i]):r[i]=t[i]);return r},getRandomInt:function(n,r){return Math.floor(Math.random()*(r-n+1)+n)},asyncify:function(n,r){return function(){var t=[].slice.call(arguments,0);return new Promise(function(e,i){try{e(n.apply(r||null,t))}catch(a){i(a)}})}},asyncifyCallback:function(n,r){return function(){var t=[].slice.call(arguments,0);return new Promise(function(e,i){t.push(function(n,r){return n?void i(n):void e(r)}),n.apply(r||null,t)})}},stringify:function(n,r){var t=[];return JSON.stringify(n,function(n,r){if("object"==typeof r&&null!==r){if(-1!==t.indexOf(r))return"[Circular]";t.push(r)}return r},r)}}});
+const safeHasOwnProperty = {}.hasOwnProperty;
+
+export function getInt(value) {
+  if (typeof value === 'number' && value % 1 === 0) {
+    return value;
+  }
+
+  let strValue = String(value);
+  if (strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
+    return parseInt(strValue, 10);
+  }
+
+  return null;
+}
+
+export function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export function hasValue(value) {
+  return typeof value !== 'undefined' && value !== null && (Array.isArray(value) || String(value) !== '');
+}
+
+export function inspectValue(value) {
+  if (typeof value !== 'undefined' && value !== null) {
+    if (Array.isArray(value)) {
+      return value;
+    }
+
+    let strValue = String(value);
+    if (strValue === '' || strValue === 'true') {
+      return true;
+    }
+    if (strValue === 'false') {
+      return false;
+    }
+    let intValue = getInt(value);
+    if (intValue !== null) {
+      return intValue;
+    }
+    if (strValue.search(/^[\+\-]?[0-9]*\.[0-9]+$/) !== -1) {
+      return parseFloat(strValue);
+    }
+    return value;
+  }
+}
+
+export function isAssociativeArray(value) {
+  return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
+}
+
+export function arrayRm(array, item) {
+  if (!Array.isArray(array)) {
+    return;
+  }
+
+  let index = array.indexOf(item);
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+}
+
+export function extend(destination, append) {
+  if (!(isAssociativeArray(destination) && isAssociativeArray(append))) {
+    throw 'Invalid extend between <' + destination + '> and <' + append + '>';
+  }
+
+  for (let key in append) {
+    if (safeHasOwnProperty.call(append, key)) {
+      if (safeHasOwnProperty.call(destination, key) && isAssociativeArray(key.value) && isAssociativeArray(destination[key.value])) {
+        extend(destination[key], append[key]);
+      } else {
+        destination[key] = append[key];
+      }
+    }
+  }
+
+  return destination;
+}
+
+export function stringify(obj, space) {
+  let objectCache = [];
+
+  return JSON.stringify(obj, function(key, value) {
+    if (typeof value === 'object' && value !== null) {
+      if (objectCache.indexOf(value) !== -1) {
+        return '[Circular]';
+      }
+      objectCache.push(value);
+    }
+    return value;
+  }, space);
+}
+
+export function asyncify(fn, bind) {
+  return function() {
+    let args = [].slice.call(arguments, 0);
+    return new Promise(function(resolve, reject) {
+      try {
+        resolve(fn.apply(bind || null, args));
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
+}
+
+export function asyncifyCallback(fn, bind) {
+  return function() {
+    let args = [].slice.call(arguments, 0);
+    return new Promise(function(resolve, reject) {
+      args.push(function(err, res) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(res);
+      });
+      fn.apply(bind || null, args);
+    });
+  };
+}

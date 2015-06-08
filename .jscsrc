@@ -97,5 +97,6 @@
   "safeContextKeyword": [
     "self",
     "that"
-  ]
+  ],
+  "esnext": true
 }
