@@ -1,38 +1,38 @@
 import {expect} from './test.common.js';
 import {arrayRm} from '../src/jsUtils.js';
 
-describe('arrayRm', function() {
-  it('should deal with undefined array', function() {
+describe('arrayRm', () => {
+  it('should deal with undefined array', () => {
     var array;
     arrayRm(array, undefined);
 
     expect(array).to.be.undefined;
   });
-  it('should deal with null array', function() {
+  it('should deal with null array', () => {
     var array = null;
     arrayRm(array, undefined);
 
     expect(array).to.be.null;
   });
-  it('should not remove content undefined', function() {
+  it('should not remove content undefined', () => {
     var array = [1];
     arrayRm(array, undefined);
 
     expect(array).to.be.eql([1]);
   });
-  it('should not remove content not present', function() {
+  it('should not remove content not present', () => {
     var array = [1];
     arrayRm(array, 0);
 
     expect(array).to.be.eql([1]);
   });
-  it('should remove content of one row', function() {
+  it('should remove content of one row', () => {
     var array = [1];
     arrayRm(array, 1);
 
     expect(array).to.be.eql([]);
   });
-  it('should remove object content', function() {
+  it('should remove object content', () => {
     var variable = {
       id: 4
     };
@@ -41,7 +41,7 @@ describe('arrayRm', function() {
 
     expect(array).to.be.eql([]);
   });
-  it('should remove object content on multiple row', function() {
+  it('should remove object content on multiple row', () => {
     var array = [];
     for (var i = 0; i < 10; i += 1) {
       array.push({
@@ -62,7 +62,7 @@ describe('arrayRm', function() {
     expect(array.length).to.be.equal(9);
     expect(array[5].id).to.be.equal(6);
   });
-  it('should not remove similar object', function() {
+  it('should not remove similar object', () => {
     var array = [];
     for (var i = 0; i < 10; i += 1) {
       array.push({

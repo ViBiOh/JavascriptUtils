@@ -1,8 +1,8 @@
 import {expect} from './test.common.js';
 import {asyncifyCallback} from '../src/jsUtils.js';
 
-describe('asyncifyCallback', function() {
-  it('should work with empty args', function() {
+describe('asyncifyCallback', () => {
+  it('should work with empty args', () => {
     var increment = 0;
     var async = asyncifyCallback(function(callback) {
       increment += 1;
@@ -15,7 +15,7 @@ describe('asyncifyCallback', function() {
     });
   });
 
-  it('should work with one arg', function() {
+  it('should work with one arg', () => {
     var async = asyncifyCallback(function(increment, callback) {
       callback(null, increment * 5);
     });
@@ -27,7 +27,7 @@ describe('asyncifyCallback', function() {
     });
   });
 
-  it('should handle error properly', function() {
+  it('should handle error properly', () => {
     var async = asyncifyCallback(function(increment, callback) {
       try {
         throw 'error';

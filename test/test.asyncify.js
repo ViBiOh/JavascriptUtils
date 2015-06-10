@@ -1,10 +1,10 @@
 import {expect} from './test.common.js';
 import {asyncify} from '../src/jsUtils.js';
 
-describe('asyncify', function() {
-  it('should work with empty args', function() {
+describe('asyncify', () => {
+  it('should work with empty args', () => {
     var increment = 0;
-    var async = asyncify(function() {
+    var async = asyncify(() => {
       increment += 1;
       return 2;
     });
@@ -15,7 +15,7 @@ describe('asyncify', function() {
     });
   });
 
-  it('should work with one arg', function() {
+  it('should work with one arg', () => {
     var async = asyncify(function(increment) {
       return increment * 5;
     });
@@ -27,7 +27,7 @@ describe('asyncify', function() {
     });
   });
 
-  it('should handle error properly', function() {
+  it('should handle error properly', () => {
     var async = asyncify(function(increment) {
       throw 'error';
     });

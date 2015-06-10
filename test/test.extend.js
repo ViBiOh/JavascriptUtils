@@ -1,8 +1,8 @@
 import {expect} from './test.common.js';
 import {extend} from '../src/jsUtils.js';
 
-describe('extend', function() {
-  it('should throw exception when undefined params', function() {
+describe('extend', () => {
+  it('should throw exception when undefined params', () => {
     var failed = false;
     try {
       extend(undefined, undefined);
@@ -12,7 +12,7 @@ describe('extend', function() {
     expect(failed).to.be.true;
   });
 
-  it('should throw exception when first undefined param', function() {
+  it('should throw exception when first undefined param', () => {
     var failed = false;
     try {
       extend({}, null);
@@ -22,7 +22,7 @@ describe('extend', function() {
     expect(failed).to.be.true;
   });
 
-  it('should throw exception when second undefined param', function() {
+  it('should throw exception when second undefined param', () => {
     var failed = false;
     try {
       extend(true, {});
@@ -32,11 +32,11 @@ describe('extend', function() {
     expect(failed).to.be.true;
   });
 
-  it('should extend two empty object', function() {
+  it('should extend two empty object', () => {
     expect(extend({}, {})).to.be.eql({});
   });
 
-  it('should extend two simple objects', function() {
+  it('should extend two simple objects', () => {
     expect(extend({
       id: 1, name: 'Test'
     }, {
@@ -46,7 +46,7 @@ describe('extend', function() {
     });
   });
 
-  it('should extend two objects with one sub-objects', function() {
+  it('should extend two objects with one sub-objects', () => {
     expect(extend({
       id: 1, name: 'Test'
     }, {
@@ -60,7 +60,7 @@ describe('extend', function() {
     });
   });
 
-  it('should extend two objects with undefined force', function() {
+  it('should extend two objects with undefined force', () => {
     expect(extend({
       id: 1, name: 'Test', contact: {
         mail: 'test@localhost'
@@ -72,7 +72,7 @@ describe('extend', function() {
     });
   });
 
-  it('should extend two objects with sub-objects', function() {
+  it('should extend two objects with sub-objects', () => {
     expect(extend({
       id: 1,
       name: 'Test',
@@ -82,7 +82,7 @@ describe('extend', function() {
     }, {
       id: 2,
       contact: {
-        event: function() {
+        event: () => {
           'test';
         }
       }
@@ -91,23 +91,25 @@ describe('extend', function() {
       name: 'Test',
       contact: {
         mail: 'test@localhost',
-        event: function() {
+        event: () => {
           'test';
         }
       }
     }.toString());
   });
 
-  it('should ignore prototype property', function() {
-    var RawObject = function() {
-      this.id = 8000;
-    };
+  it('should ignore prototype property', () => {
+    class RawObject {
+      constructor(id) {
+        this.id = id;
+      }
 
-    RawObject.prototype.toString = function() {
-      return 'test string';
-    };
+      toString() {
+        return 'test string';
+      }
+    }
 
-    expect(extend({}, new RawObject())).to.be.eql({
+    expect(extend({}, new RawObject(8000))).to.be.eql({
       id: 8000
     });
   });
