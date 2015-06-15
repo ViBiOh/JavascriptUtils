@@ -63,8 +63,9 @@ export function arrayRm(array, item) {
 export function getArrayOf(array, type, message) {
   if (typeof array === 'undefined') {
     return [];
-  }
-  if (array instanceof type) {
+  } else if (typeof type === 'undefined') {
+    throw new Error('type is undefined in getArrayOf');
+  } else if (array instanceof type) {
     return [array];
   }
 
@@ -72,7 +73,7 @@ export function getArrayOf(array, type, message) {
     array
       .map(source => source instanceof type)
       .reduce((previous, current) => !current || previous, false)) {
-    throw new Error(message);
+    throw new Error(message || 'array contains objects differents than required');
   }
 
   return array;

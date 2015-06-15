@@ -3,7 +3,7 @@ import {extend} from '../src/jsUtils.js';
 
 describe('extend', () => {
   it('should throw exception when undefined params', () => {
-    var failed = false;
+    let failed = false;
     try {
       extend(undefined, undefined);
     } catch (err) {
@@ -13,7 +13,7 @@ describe('extend', () => {
   });
 
   it('should throw exception when first undefined param', () => {
-    var failed = false;
+    let failed = false;
     try {
       extend({}, null);
     } catch (err) {
@@ -23,7 +23,7 @@ describe('extend', () => {
   });
 
   it('should throw exception when second undefined param', () => {
-    var failed = false;
+    let failed = false;
     try {
       extend(true, {});
     } catch (err) {

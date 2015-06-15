@@ -3,7 +3,7 @@ import {stringify} from '../src/jsUtils.js';
 
 describe('stringify', () => {
   it('should stringify a basic object', () => {
-    var result = stringify({
+    let result = stringify({
       id: 8000,
       name: 'Bob'
     });
@@ -12,7 +12,7 @@ describe('stringify', () => {
   });
 
   it('should stringify with given space', () => {
-    var result = stringify({
+    let result = stringify({
       id: 8000,
       name: 'Bob'
     }, '  ');
@@ -21,11 +21,11 @@ describe('stringify', () => {
   });
 
   it('should stringify with circular reference', () => {
-    var circularObject = {
+    let circularObject = {
       id: 8000
     };
     circularObject.child = circularObject;
-    var result = stringify(circularObject);
+    let result = stringify(circularObject);
 
     expect(result).to.be.eql('{"id":8000,"child":"[Circular]"}');
   });

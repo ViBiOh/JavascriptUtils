@@ -3,32 +3,32 @@ import {asyncifyCallback} from '../src/jsUtils.js';
 
 describe('asyncifyCallback', () => {
   it('should work with empty args', () => {
-    var increment = 0;
-    var async = asyncifyCallback(function(callback) {
+    let increment = 0;
+    let async = asyncifyCallback(callback => {
       increment += 1;
       callback(null, 2);
     });
 
-    return async().then(function(result) {
+    return async().then(result => {
       expect(result).to.be.equal(2);
       expect(increment).to.be.equal(1);
     });
   });
 
   it('should work with one arg', () => {
-    var async = asyncifyCallback(function(increment, callback) {
+    let async = asyncifyCallback((increment, callback) => {
       callback(null, increment * 5);
     });
 
-    var init = 1;
-    return async(init).then(function(result) {
+    let init = 1;
+    return async(init).then(result => {
       expect(init).to.be.equal(1);
       expect(result).to.be.equal(5);
     });
   });
 
   it('should handle error properly', () => {
-    var async = asyncifyCallback(function(increment, callback) {
+    let async = asyncifyCallback((increment, callback) => {
       try {
         throw 'error';
       } catch (e) {
@@ -36,10 +36,6 @@ describe('asyncifyCallback', () => {
       }
     });
 
-    return async(1).then(function(result) {
-      expect(false).to.be.true;
-    }, function(error) {
-      expect(error).to.be.defined;
-    });
+    return async(1).then(result => expect(false).to.be.true, error => expect(error).to.be.defined);
   });
 });
