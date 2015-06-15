@@ -60,6 +60,24 @@ export function arrayRm(array, item) {
   }
 }
 
+export function getArrayOf(array, type, message) {
+  if (typeof array === 'undefined') {
+    return [];
+  }
+  if (array instanceof type) {
+    return [array];
+  }
+
+  if (!Array.isArray(array) ||
+    array
+      .map(source => source instanceof type)
+      .reduce((previous, current) => !current || previous, false)) {
+    throw new Error(message);
+  }
+
+  return array;
+}
+
 export function extend(destination, append) {
   if (!(isAssociativeArray(destination) && isAssociativeArray(append))) {
     throw 'Invalid extend between <' + destination + '> and <' + append + '>';
