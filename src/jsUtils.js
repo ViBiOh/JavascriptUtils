@@ -51,16 +51,18 @@ export function isAssociativeArray(value) {
 
 export function arrayRm(array, item) {
   if (!Array.isArray(array)) {
-    return;
+    return false;
   }
 
   let index = array.indexOf(item);
   if (index > -1) {
     array.splice(index, 1);
+    return true;
   }
+  return false;
 }
 
-export function getArrayOf(array, type, message) {
+export function checkArrayOf(array, type, message) {
   if (typeof array === 'undefined') {
     return [];
   } else if (typeof type === 'undefined') {
@@ -86,7 +88,7 @@ export function extend(destination, append) {
 
   for (let key in append) {
     if (safeHasOwnProperty.call(append, key)) {
-      if (safeHasOwnProperty.call(destination, key) && isAssociativeArray(key.value) && isAssociativeArray(destination[key.value])) {
+      if (safeHasOwnProperty.call(destination, key) && isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
         extend(destination[key], append[key]);
       } else {
         destination[key] = append[key];
