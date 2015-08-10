@@ -5,7 +5,7 @@ export function getInt(value) {
     return value;
   }
 
-  let strValue = String(value);
+  const strValue = String(value);
   if (strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
     return parseInt(strValue, 10);
   }
@@ -27,14 +27,14 @@ export function inspectValue(value) {
       return value;
     }
 
-    let strValue = String(value);
+    const strValue = String(value);
     if (strValue === '' || strValue === 'true') {
       return true;
     }
     if (strValue === 'false') {
       return false;
     }
-    let intValue = getInt(value);
+    const intValue = getInt(value);
     if (intValue !== null) {
       return intValue;
     }
@@ -46,7 +46,8 @@ export function inspectValue(value) {
 }
 
 export function isAssociativeArray(value) {
-  return typeof value === 'object' && value !== null && !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
+  return typeof value === 'object' && value !== null &&
+    !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
 }
 
 export function arrayRm(array, item) {
@@ -54,7 +55,7 @@ export function arrayRm(array, item) {
     return false;
   }
 
-  let index = array.indexOf(item);
+  const index = array.indexOf(item);
   if (index > -1) {
     array.splice(index, 1);
     return true;
@@ -83,12 +84,12 @@ export function checkArrayOf(array, type, message) {
 
 export function extend(destination, append) {
   if (!(isAssociativeArray(destination) && isAssociativeArray(append))) {
-    throw 'Invalid extend between <' + destination + '> and <' + append + '>';
+    throw new Error('Invalid extend between <' + destination + '> and <' + append + '>');
   }
 
-  for (let key in append) {
-    if (safeHasOwnProperty.call(append, key)) {
-      if (safeHasOwnProperty.call(destination, key) && isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
+  for (const key in append) {
+    if (Reflect.apply(safeHasOwnProperty, append, key)) {
+      if (Reflect.apply(safeHasOwnProperty, destination, key) && isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
         extend(destination[key], append[key]);
       } else {
         destination[key] = append[key];
@@ -100,7 +101,7 @@ export function extend(destination, append) {
 }
 
 export function stringify(obj, space) {
-  let objectCache = [];
+  const objectCache = [];
 
   return JSON.stringify(obj, function(key, value) {
     if (typeof value === 'object' && value !== null) {
@@ -115,12 +116,12 @@ export function stringify(obj, space) {
 
 export function asyncify(fn, bind) {
   return function() {
-    let args = [].slice.call(arguments, 0);
+    const args = Reflect.apply([].slice, arguments, 0);
     return new Promise(function(resolve, reject) {
       try {
-        resolve(fn.apply(bind || null, args));
-      } catch (e) {
-        reject(e);
+        resolve(Reflect.apply(fn, bind || null, args));
+      } catch (err) {
+        reject(err);
       }
     });
   };
@@ -128,7 +129,7 @@ export function asyncify(fn, bind) {
 
 export function asyncifyCallback(fn, bind) {
   return function() {
-    let args = [].slice.call(arguments, 0);
+    const args = Reflect.apply([].slice, arguments, 0);
     return new Promise(function(resolve, reject) {
       args.push(function(err, res) {
         if (err) {
@@ -137,7 +138,7 @@ export function asyncifyCallback(fn, bind) {
         }
         resolve(res);
       });
-      fn.apply(bind || null, args);
+      Reflect.apply(fn, bind || null, args);
     });
   };
 }
