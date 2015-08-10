@@ -23,6 +23,7 @@ Desktop.ini
 
 # Node Package Manager
 node_modules
+**/npm-debug.log
 
 # Bower dependencies Manage
 bower_components

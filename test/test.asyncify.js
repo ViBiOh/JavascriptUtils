@@ -4,7 +4,7 @@ import {asyncify} from '../src/jsUtils.js';
 describe('asyncify', () => {
   it('should work with empty args', () => {
     let increment = 0;
-    let async = asyncify(() => {
+    const async = asyncify(() => {
       increment += 1;
       return 2;
     });
@@ -16,11 +16,11 @@ describe('asyncify', () => {
   });
 
   it('should work with one arg', () => {
-    let async = asyncify(increment => {
+    const async = asyncify(increment => {
       return increment * 5;
     });
 
-    let init = 1;
+    const init = 1;
     return async(init).then(result => {
       expect(init).to.be.equal(1);
       expect(result).to.be.equal(5);
@@ -28,7 +28,7 @@ describe('asyncify', () => {
   });
 
   it('should handle error properly', () => {
-    let async = asyncify(increment => {
+    const async = asyncify(increment => {
       throw 'error';
     });
 

@@ -88,8 +88,9 @@ export function extend(destination, append) {
   }
 
   for (const key in append) {
-    if (Reflect.apply(safeHasOwnProperty, append, key)) {
-      if (Reflect.apply(safeHasOwnProperty, destination, key) && isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
+    if (Reflect.apply(safeHasOwnProperty, append, [key])) {
+      if (Reflect.apply(safeHasOwnProperty, destination, [key]) &&
+        isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
         extend(destination[key], append[key]);
       } else {
         destination[key] = append[key];
@@ -116,7 +117,7 @@ export function stringify(obj, space) {
 
 export function asyncify(fn, bind) {
   return function() {
-    const args = Reflect.apply([].slice, arguments, 0);
+    const args = Reflect.apply([].slice, arguments, [0]);
     return new Promise(function(resolve, reject) {
       try {
         resolve(Reflect.apply(fn, bind || null, args));
@@ -129,7 +130,7 @@ export function asyncify(fn, bind) {
 
 export function asyncifyCallback(fn, bind) {
   return function() {
-    const args = Reflect.apply([].slice, arguments, 0);
+    const args = Reflect.apply([].slice, arguments, [0]);
     return new Promise(function(resolve, reject) {
       args.push(function(err, res) {
         if (err) {
