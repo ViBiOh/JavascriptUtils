@@ -177,7 +177,7 @@
         "newline-after-var": 0,
         "object-curly-spacing": [2, "never"],
         "object-shorthand": 2,
-        "one-var": 2,
+        "one-var": [2, "never"],
         "operator-assignment": [2, "always"],
         "operator-linebreak": 2,
         "padded-blocks": [2, "never"],
