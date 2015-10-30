@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/ViBiOh/js-utils",
   "devDependencies": {
-    "babel": "latest",
-    "chai": "*",
+    "babel": "5.8.29",
+    "chai": "latest",
     "chai-as-promised": "latest",
     "eslint": "latest",
     "istanbul": "latest",
