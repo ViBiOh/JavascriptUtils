@@ -89,8 +89,8 @@ export function extend(destination, append) {
   }
 
   for (const key in append) {
-    if (Reflect.apply(safeHasOwnProperty, append, [key])) {
-      if (Reflect.apply(safeHasOwnProperty, destination, [key]) &&
+    if (safeHasOwnProperty.apply(append, [key])) {
+      if (safeHasOwnProperty.apply(destination, [key]) &&
         isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
         extend(destination[key], append[key]);
       } else {
@@ -118,10 +118,10 @@ export function stringify(obj, space) {
 
 export function asyncify(fn, bind) {
   return function() {
-    const args = Reflect.apply(safeSlice, arguments, [0]);
+    const args = safeSlice.apply(arguments, [0]);
     return new Promise(function(resolve, reject) {
       try {
-        resolve(Reflect.apply(fn, bind || null, args));
+        resolve(fn.apply(bind || null, args));
       } catch (err) {
         reject(err);
       }
@@ -131,7 +131,7 @@ export function asyncify(fn, bind) {
 
 export function asyncifyCallback(fn, bind) {
   return function() {
-    const args = Reflect.apply(safeSlice, arguments, [0]);
+    const args = safeSlice.apply(arguments, [0]);
     return new Promise(function(resolve, reject) {
       args.push(function(err, res) {
         if (err) {
@@ -140,7 +140,7 @@ export function asyncifyCallback(fn, bind) {
         }
         resolve(res);
       });
-      Reflect.apply(fn, bind || null, args);
+      fn.apply(bind || null, args);
     });
   };
 }

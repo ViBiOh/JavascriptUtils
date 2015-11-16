@@ -183,7 +183,7 @@
         "padded-blocks": [2, "never"],
         "prefer-const": 2,
         "prefer-spread": 2,
-        "prefer-reflect": 2,
+        "prefer-reflect": 0,
         "quote-props": [2, "consistent-as-needed"],
         "quotes": [2, "single"],
         "radix": 2,
