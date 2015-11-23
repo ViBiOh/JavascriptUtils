@@ -22,8 +22,7 @@ Desktop.ini
 *.iws
 
 # Node Package Manager
-node_modules
+node_modules/
 **/npm-debug.log
-
-# Project
-coverage
+coverage/
+tmp/

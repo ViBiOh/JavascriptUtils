@@ -4,6 +4,7 @@
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf ./tmp && mkdir ./tmp",
     "jshint": "./node_modules/.bin/jshint src/",
     "eslint": "./node_modules/.bin/eslint src/",
     "jscs": "./node_modules/.bin/jscs src/",
@@ -12,7 +13,7 @@
     "build:babel": "./node_modules/.bin/babel ./src/jsUtils.js -o ./tmp/index.babel.js",
     "build:uglify": "./node_modules/.bin/uglifyjs ./tmp/index.babel.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
     "build:all": "npm run build:babel && npm run build:uglify",
-    "build": "npm run test && npm run build:all"
+    "build": "npm run clean && npm run test && npm run build:all"
   },
   "repository": {
     "type": "git",
