@@ -42,8 +42,8 @@ export function inspectValue(value) {
     if (strValue.search(/^[\+\-]?[0-9]*\.[0-9]+$/) !== -1) {
       return parseFloat(strValue);
     }
-    return value;
   }
+  return value;
 }
 
 export function isAssociativeArray(value) {

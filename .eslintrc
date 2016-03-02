@@ -1,30 +1,10 @@
 {
     "ecmaFeatures": {
-        "arrowFunctions": true,
-        "binaryLiterals": true,
-        "blockBindings": true,
-        "classes": true,
-        "defaultParams": true,
-        "destructuring": true,
-        "forOf": true,
-        "generators": true,
-        "modules": true,
-        "objectLiteralComputedProperties": true,
-        "objectLiteralDuplicateProperties": true,
-        "objectLiteralShorthandMethods": true,
-        "objectLiteralShorthandProperties": true,
-        "octalLiterals": true,
-        "regexUFlag": true,
-        "regexYFlag": true,
-        "restParams": true,
-        "spread": true,
-        "superInFunctions": true,
-        "templateStrings": true,
-        "unicodeCodePointEscapes": true,
-        "globalReturn": true,
+        "globalReturn ": true,
+        "impliedStrict ": true,
         "jsx": true
     },
-    "parser": "espree",
+    "parser": "babel-eslint",
     "env": {
         "browser": false,
         "node": true,
@@ -32,7 +12,9 @@
         "mocha": false,
         "jasmine": false
     },
-
+    "globals": {
+        "Promise": true
+    },
     "rules": {
         "no-alert": 2,
         "no-array-constructor": 2,
@@ -55,7 +37,6 @@
         "no-else-return": 2,
         "no-empty": 2,
         "no-empty-character-class": 2,
-        "no-empty-label": 2,
         "no-eq-null": 2,
         "no-eval": 2,
         "no-ex-assign": 2,
@@ -134,7 +115,6 @@
         "no-var": 2,
         "no-warning-comments": [2, { "terms": ["todo", "fixme", "xxx"], "location": "start" }],
         "no-with": 2,
-
         "array-bracket-spacing": [2, "never"],
         "arrow-parens": [2, "as-needed"],
         "arrow-spacing": 2,
@@ -192,12 +172,11 @@
         "semi": 2,
         "semi-spacing": [2, {"before": false, "after": true}],
         "sort-vars": 2,
-        "space-after-keywords": [2, "always"],
+        "keyword-spacing": 2,
         "space-before-blocks": [2, "always"],
         "space-before-function-paren": [2, "never"],
         "space-in-parens": [2, "never"],
         "space-infix-ops": 2,
-        "space-return-throw-case": 2,
         "space-unary-ops": [2, { "words": true, "nonwords": false }],
         "spaced-comment": 2,
         "strict": 2,

@@ -9,7 +9,7 @@
     "eslint": "./node_modules/.bin/eslint src/",
     "jscs": "./node_modules/.bin/jscs src/",
     "pretest": "npm run jshint && npm run eslint && npm run jscs",
-    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover --report text --report html --report lcovonly ./node_modules/.bin/_mocha --reporter dot -R spec",
+    "test": "./node_modules/.bin/babel-node ./node_modules/isparta/bin/isparta cover --report text --report html --report lcovonly ./node_modules/mocha/bin/_mocha --",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "build:babel": "./node_modules/.bin/babel ./src/jsUtils.js -o ./tmp/index.babel.js",
     "build:uglify": "./node_modules/.bin/uglifyjs ./tmp/index.babel.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
@@ -33,6 +33,7 @@
   "devDependencies": {
     "babel-cli": "latest",
     "babel-preset-es2015": "latest",
+    "babel-eslint": "latest",
     "chai": "latest",
     "chai-as-promised": "latest",
     "eslint": "latest",

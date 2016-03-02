@@ -7,7 +7,7 @@ describe('inspectValue', () => {
   });
 
   it('should not convert null', () => {
-    expect(inspectValue(null)).to.be.undefined;
+    expect(inspectValue(null)).to.be.null;
   });
 
   it('should not convert obj', () => {
