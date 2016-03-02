@@ -9,7 +9,8 @@
     "eslint": "./node_modules/.bin/eslint src/",
     "jscs": "./node_modules/.bin/jscs src/",
     "pretest": "npm run jshint && npm run eslint && npm run jscs",
-    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover --report text --report html ./node_modules/.bin/_mocha --reporter dot -R spec",
+    "test": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover --report text --report html --report lcovonly ./node_modules/.bin/_mocha --reporter dot -R spec",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "build:babel": "./node_modules/.bin/babel ./src/jsUtils.js -o ./tmp/index.babel.js",
     "build:uglify": "./node_modules/.bin/uglifyjs ./tmp/index.babel.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
     "build:all": "npm run build:babel && npm run build:uglify",
@@ -39,6 +40,8 @@
     "jscs": "latest",
     "jshint": "latest",
     "mocha": "latest",
-    "uglify-js": "latest"
+    "uglify-js": "latest",
+    "coveralls": "latest",
+    "mocha-lcov-reporter": "latest"
   }
 }
