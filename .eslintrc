@@ -1,7 +1,6 @@
 {
     "extends": "airbnb/base",
     "rules": {
-        "prefer-rest-params": 1,
         "max-len": 1
     }
 }

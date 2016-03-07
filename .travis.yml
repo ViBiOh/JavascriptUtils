@@ -4,5 +4,9 @@ node_js:
 script:
   - "npm run build"
   - "npm run coveralls"
+deploy:
+  provider: releases
+  file: "index.js"
+  skip_cleanup: true
 notifications:
   email: false
