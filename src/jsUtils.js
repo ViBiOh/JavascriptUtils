@@ -84,28 +84,30 @@ export function checkArrayOf(array, type, message) {
 }
 
 export function extend(destination, append) {
+  const destinationExtended = destination;
+
   if (!(isAssociativeArray(destination) && isAssociativeArray(append))) {
-    throw new Error('Invalid extend between <' + destination + '> and <' + append + '>');
+    throw new Error(`Invalid extend between <${destination}> and <${append}>`);
   }
 
   for (const key in append) {
     if (safeHasOwnProperty.apply(append, [key])) {
-      if (safeHasOwnProperty.apply(destination, [key]) &&
-        isAssociativeArray(append[key]) && isAssociativeArray(destination[key])) {
-        extend(destination[key], append[key]);
+      if (safeHasOwnProperty.apply(destinationExtended, [key]) &&
+        isAssociativeArray(append[key]) && isAssociativeArray(destinationExtended[key])) {
+        extend(destinationExtended[key], append[key]);
       } else {
-        destination[key] = append[key];
+        destinationExtended[key] = append[key];
       }
     }
   }
 
-  return destination;
+  return destinationExtended;
 }
 
 export function stringify(obj, space) {
   const objectCache = [];
 
-  return JSON.stringify(obj, function(key, value) {
+  return JSON.stringify(obj, (key, value) => {
     if (typeof value === 'object' && value !== null) {
       if (objectCache.indexOf(value) !== -1) {
         return '[Circular]';
@@ -117,9 +119,9 @@ export function stringify(obj, space) {
 }
 
 export function asyncify(fn, bind) {
-  return function() {
-    const args = safeSlice.apply(arguments, [0]);
-    return new Promise(function(resolve, reject) {
+  return () => {
+    const args = safeSlice.apply(...arguments, 0);
+    return new Promise((resolve, reject) => {
       try {
         resolve(fn.apply(bind || null, args));
       } catch (err) {
@@ -130,10 +132,10 @@ export function asyncify(fn, bind) {
 }
 
 export function asyncifyCallback(fn, bind) {
-  return function() {
-    const args = safeSlice.apply(arguments, [0]);
-    return new Promise(function(resolve, reject) {
-      args.push(function(err, res) {
+  return () => {
+    const args = safeSlice.apply(...arguments, 0);
+    return new Promise((resolve, reject) => {
+      args.push((err, res) => {
         if (err) {
           reject(err);
           return;
