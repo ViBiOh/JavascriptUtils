@@ -28,7 +28,7 @@ describe('asyncify', () => {
   });
 
   it('should handle error properly', () => {
-    const async = asyncify(increment => {
+    const async = asyncify(() => {
       throw 'error';
     });
 

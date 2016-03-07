@@ -1,5 +1,4 @@
 const safeHasOwnProperty = {}.hasOwnProperty;
-const safeSlice = [].slice;
 
 export function getInt(value) {
   if (typeof value === 'number' && value % 1 === 0) {
@@ -119,30 +118,24 @@ export function stringify(obj, space) {
 }
 
 export function asyncify(fn, bind) {
-  return () => {
-    const args = safeSlice.apply(arguments, [0]);
-    return new Promise((resolve, reject) => {
-      try {
-        resolve(fn.apply(bind || null, args));
-      } catch (err) {
-        reject(err);
-      }
-    });
-  };
+  return (...args) => new Promise((resolve, reject) => {
+    try {
+      resolve(fn.apply(bind || null, args));
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
 
 export function asyncifyCallback(fn, bind) {
-  return () => {
-    const args = safeSlice.apply(arguments, [0]);
-    return new Promise((resolve, reject) => {
-      args.push((err, res) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(res);
-      });
-      fn.apply(bind || null, args);
+  return (...args) => new Promise((resolve, reject) => {
+    args.push((err, res) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(res);
     });
-  };
+    fn.apply(bind || null, args);
+  });
 }
