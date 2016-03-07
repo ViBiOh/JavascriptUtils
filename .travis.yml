@@ -1,13 +1,8 @@
 language: node_js
 node_js:
-  - "5.7.0"
+  - "5.7.1"
 script:
   - "npm run build"
   - "npm run coveralls"
-deploy:
-  provider: releases
-  api_key: ${GITHUB_TOKEN}
-  file: "index.js"
-  skip_cleanup: true
 notifications:
   email: false
