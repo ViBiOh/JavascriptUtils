@@ -6,6 +6,7 @@ script:
   - "npm run coveralls"
 deploy:
   provider: releases
+  api_key: "${GITHUB_TOKEN}"
   file: "index.js"
   skip_cleanup: true
 notifications:
