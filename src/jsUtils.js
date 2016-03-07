@@ -120,7 +120,7 @@ export function stringify(obj, space) {
 
 export function asyncify(fn, bind) {
   return () => {
-    const args = safeSlice.apply(...arguments, 0);
+    const args = safeSlice.apply(arguments, [0]);
     return new Promise((resolve, reject) => {
       try {
         resolve(fn.apply(bind || null, args));
@@ -133,7 +133,7 @@ export function asyncify(fn, bind) {
 
 export function asyncifyCallback(fn, bind) {
   return () => {
-    const args = safeSlice.apply(...arguments, 0);
+    const args = safeSlice.apply(arguments, [0]);
     return new Promise((resolve, reject) => {
       args.push((err, res) => {
         if (err) {
