@@ -4,15 +4,14 @@
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf ./tmp && mkdir ./tmp",
     "eslint": "./node_modules/.bin/eslint src/",
     "pretest": "npm run eslint",
     "test": "./node_modules/.bin/babel-node ./node_modules/isparta/bin/isparta cover --report text --report html --report lcovonly ./node_modules/mocha/bin/_mocha --",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "build:babel": "./node_modules/.bin/babel ./src/jsUtils.js -o ./tmp/index.babel.js",
-    "build:uglify": "./node_modules/.bin/uglifyjs ./tmp/index.babel.js -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
-    "build:all": "npm run build:babel && npm run build:uglify",
-    "build": "npm run test && npm run clean && npm run build:all"
+    "posttest": "npm run coveralls || true",
+    "clean": "rm -rf ./tmp && mkdir ./tmp",
+    "build:uglify": "./node_modules/.bin/babel ./src/jsUtils.js | ./node_modules/.bin/uglifyjs -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
+    "build": "npm test && npm run clean && npm run build:uglify"
   },
   "repository": {
     "type": "git",
