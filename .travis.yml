@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-  - "5.9.1"
+- 5.9.1
 script:
-  - "npm run build"
+- npm run build
 notifications:
   email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: pCfuSOre/His5cf/bw3bm++CtsfWumvWgQgpSUu0MmJmlcuz48SvMOgpcV3baJ2OYomVI1cerRV4XejNLtLMIVeHVAQH8X0Xx/KBbs5jUuwl7HO3+9LVnWCXxwq2pLrp9awNLjEgvbtn2PQCcxbR6gqFWm7/ik8x3ZnOdgyOB+U=
+  file: index.js
+  on:
+    repo: ViBiOh/js-utils
