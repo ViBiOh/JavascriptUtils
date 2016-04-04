@@ -12,4 +12,5 @@ deploy:
     secure: pCfuSOre/His5cf/bw3bm++CtsfWumvWgQgpSUu0MmJmlcuz48SvMOgpcV3baJ2OYomVI1cerRV4XejNLtLMIVeHVAQH8X0Xx/KBbs5jUuwl7HO3+9LVnWCXxwq2pLrp9awNLjEgvbtn2PQCcxbR6gqFWm7/ik8x3ZnOdgyOB+U=
   file: index.js
   on:
-    repo: ViBiOh/js-utils
+    tags: false
+    all_branches: true
