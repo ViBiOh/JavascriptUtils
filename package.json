@@ -33,6 +33,7 @@
     "chai": "latest",
     "chai-as-promised": "latest",
     "eslint": "latest",
+    "eslint-plugin-import": "latest",
     "eslint-config-airbnb": "latest",
     "isparta": "latest",
     "mocha": "latest",
