@@ -15,9 +15,18 @@ describe('stringify', () => {
     let result = stringify({
       id: 8000,
       name: 'Bob'
-    }, '  ');
+    }, undefined, '  ');
 
     expect(result).to.be.eql('{\n  "id": 8000,\n  "name": "Bob"\n}');
+  });
+
+  it('should stringify with given space and ignoring', () => {
+    let result = stringify({
+      id: 8000,
+      name: 'Bob'
+    }, ['name'], '  ');
+
+    expect(result).to.be.eql('{\n  "name": "Bob"\n}');
   });
 
   it('should stringify with circular reference', () => {
