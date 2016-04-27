@@ -103,10 +103,14 @@ export function extend(destination, append) {
   return destinationExtended;
 }
 
-export function stringify(obj, space) {
+export function stringify(obj, replacer, space) {
   const objectCache = [];
+  const whiteList = Array.isArray(replacer) ? replacer : false;
 
   return JSON.stringify(obj, (key, value) => {
+    if (key !== '' && whiteList && whiteList.indexOf(key) === -1) {
+      return undefined;
+    }
     if (typeof value === 'object' && value !== null) {
       if (objectCache.indexOf(value) !== -1) {
         return '[Circular]';
