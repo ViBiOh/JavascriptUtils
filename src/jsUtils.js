@@ -6,7 +6,7 @@ export function getInt(value) {
   }
 
   const strValue = String(value);
-  if (strValue.search(/^[\+\-]?[0-9]+$/) !== -1) {
+  if (strValue.search(/^[+-]?[0-9]+$/) !== -1) {
     return parseInt(strValue, 10);
   }
 
@@ -38,7 +38,7 @@ export function inspectValue(value) {
     if (intValue !== null) {
       return intValue;
     }
-    if (strValue.search(/^[\+\-]?[0-9]*\.[0-9]+$/) !== -1) {
+    if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
       return parseFloat(strValue);
     }
   }
