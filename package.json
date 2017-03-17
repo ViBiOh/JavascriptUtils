@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "./node_modules/.bin/eslint src/",
     "pretest": "npm run eslint",
-    "test": "./node_modules/.bin/babel-node ./node_modules/isparta/bin/isparta cover --report text --report html --report lcovonly ./node_modules/mocha/bin/_mocha --",
+    "test": "./node_modules/.bin/nyc --reporter html --reporter text --reporter lcov --require babel-core/register ./node_modules/.bin/mocha \"test/**/*.js\" --",
     "coverage": "./node_modules/.bin/codecov -f ./coverage/lcov.info",
     "build:uglify": "./node_modules/.bin/babel ./src/jsUtils.js | ./node_modules/.bin/uglifyjs -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
     "build": "npm test && npm run build:uglify"
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ViBiOh/js-utils",
   "devDependencies": {
+    "babel-core": "latest",
     "babel-cli": "latest",
     "babel-preset-es2015": "latest",
     "babel-eslint": "latest",
@@ -35,9 +36,8 @@
     "eslint": "latest",
     "eslint-plugin-import": "latest",
     "eslint-config-airbnb": "latest",
-    "isparta": "latest",
     "mocha": "latest",
-    "uglify-js": "latest",
-    "mocha-lcov-reporter": "latest"
+    "nyc": "latest",
+    "uglify-js": "latest"
   }
 }

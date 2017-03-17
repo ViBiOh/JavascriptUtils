@@ -16,13 +16,10 @@ Desktop.ini
 .settings/
 .loadpath
 
-# IntelliJ Files
-.idea/
-*.iml
-*.iws
-
 # Node Package Manager
 node_modules/
 **/npm-debug.log
 coverage/
 tmp/
+.nyc_output/
+
