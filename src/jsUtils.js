@@ -14,7 +14,7 @@ export function getInt(value) {
 }
 
 export function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (((max - min) + 1) + min));
 }
 
 export function hasValue(value) {
@@ -47,7 +47,8 @@ export function inspectValue(value) {
 
 export function isAssociativeArray(value) {
   return typeof value === 'object' && value !== null &&
-    !(value instanceof String || value instanceof Boolean || value instanceof Number || Array.isArray(value));
+    !(value instanceof String || value instanceof Boolean || value instanceof Number ||
+      Array.isArray(value));
 }
 
 export function arrayRm(array, item) {
@@ -67,7 +68,7 @@ export function checkArrayOf(array, type, message) {
   if (typeof array === 'undefined') {
     return [];
   } else if (typeof type === 'undefined') {
-    throw new Error('type is undefined in getArrayOf');
+    throw new Error('type is undefined in checkArrayOf');
   } else if (array instanceof type) {
     return [array];
   }
@@ -89,16 +90,14 @@ export function extend(destination, append) {
     throw new Error(`Invalid extend between <${destination}> and <${append}>`);
   }
 
-  for (const key in append) {
-    if (safeHasOwnProperty.apply(append, [key])) {
-      if (safeHasOwnProperty.apply(destinationExtended, [key]) &&
-        isAssociativeArray(append[key]) && isAssociativeArray(destinationExtended[key])) {
-        extend(destinationExtended[key], append[key]);
-      } else {
-        destinationExtended[key] = append[key];
-      }
+  Object.keys(append).forEach((key) => {
+    if (safeHasOwnProperty.apply(destinationExtended, [key]) &&
+      isAssociativeArray(append[key]) && isAssociativeArray(destinationExtended[key])) {
+      extend(destinationExtended[key], append[key]);
+    } else {
+      destinationExtended[key] = append[key];
     }
-  }
+  });
 
   return destinationExtended;
 }

@@ -1,8 +1,3 @@
 {
-    "extends": "airbnb/base",
-    "rules": {
-        "max-len": 1,
-        "no-restricted-syntax": 1,
-        "no-mixed-operators": 1
-    }
+    "extends": "airbnb/base"
 }
