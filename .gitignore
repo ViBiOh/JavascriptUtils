@@ -1,25 +1,6 @@
-# MacOs Files
-.DS_Store
-.Spotlight-V100
-.Trashes
-._*
-
-# Windows Files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Eclipse Files
-.project
-.metadata
-.classpath
-.settings/
-.loadpath
-
 # Node Package Manager
 node_modules/
 **/npm-debug.log
+.nyc_output/
 coverage/
 tmp/
-.nyc_output/
-
