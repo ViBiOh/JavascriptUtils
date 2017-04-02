@@ -2,31 +2,31 @@ import test from 'ava';
 import { isAssociativeArray } from '../src/jsUtils';
 
 test('should say undefined is not an aa', (t) => {
-  t.is(isAssociativeArray(undefined), false);
+  t.false(isAssociativeArray(undefined));
 });
 
 test('should say null is not an aa', (t) => {
-  t.is(isAssociativeArray(null), false);
+  t.false(isAssociativeArray(null));
 });
 
 test('should say empty string is not an aa', (t) => {
-  t.is(isAssociativeArray(''), false);
+  t.false(isAssociativeArray(''));
 });
 
 test('should say string is not an aa', (t) => {
-  t.is(isAssociativeArray('test'), false);
+  t.false(isAssociativeArray('test'));
 });
 
 test('should say zero is not an aa', (t) => {
-  t.is(isAssociativeArray(0), false);
+  t.false(isAssociativeArray(0));
 });
 
 test('should say number is not an aa', (t) => {
-  t.is(isAssociativeArray(8000), false);
+  t.false(isAssociativeArray(8000));
 });
 
 test('should say NaN is not an aa', (t) => {
-  t.is(isAssociativeArray(NaN), false);
+  t.false(isAssociativeArray(NaN));
 });
 
 test('should say empty obj is an aa', (t) => {
@@ -34,5 +34,5 @@ test('should say empty obj is an aa', (t) => {
 });
 
 test('should say empty array is not an aa', (t) => {
-  t.is(isAssociativeArray([]), false);
+  t.false(isAssociativeArray([]));
 });

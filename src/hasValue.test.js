@@ -2,15 +2,15 @@ import test from 'ava';
 import { hasValue } from '../src/jsUtils';
 
 test('should say undefined has no value', (t) => {
-  t.is(hasValue(undefined), false);
+  t.false(hasValue(undefined));
 });
 
 test('should say null has no value', (t) => {
-  t.is(hasValue(null), false);
+  t.false(hasValue(null));
 });
 
 test('should say empty string has no value', (t) => {
-  t.is(hasValue(''), false);
+  t.false(hasValue(''));
 });
 
 test('should say string has value', (t) => {

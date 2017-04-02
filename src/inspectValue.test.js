@@ -30,7 +30,7 @@ test('should convert true to true', (t) => {
 });
 
 test('should convert false to false', (t) => {
-  t.is(inspectValue('false'), false);
+  t.false(inspectValue('false'));
 });
 
 test('should convert zero to number', (t) => {
