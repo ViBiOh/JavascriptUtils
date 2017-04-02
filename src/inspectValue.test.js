@@ -18,15 +18,15 @@ test('should not convert array', (t) => {
 });
 
 test('should not convert NaN', (t) => {
-  t.is(isNaN(inspectValue(NaN)), true);
+  t.true(isNaN(inspectValue(NaN)));
 });
 
 test('should convert empty string to true', (t) => {
-  t.is(inspectValue(''), true);
+  t.true(inspectValue(''));
 });
 
 test('should convert true to true', (t) => {
-  t.is(inspectValue('true'), true);
+  t.true(inspectValue('true'));
 });
 
 test('should convert false to false', (t) => {

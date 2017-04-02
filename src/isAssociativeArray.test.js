@@ -30,7 +30,7 @@ test('should say NaN is not an aa', (t) => {
 });
 
 test('should say empty obj is an aa', (t) => {
-  t.is(isAssociativeArray({}), true);
+  t.true(isAssociativeArray({}));
 });
 
 test('should say empty array is not an aa', (t) => {

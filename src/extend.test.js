@@ -8,7 +8,7 @@ test('should throw exception when undefined params', (t) => {
   } catch (err) {
     failed = true;
   }
-  t.is(failed, true);
+  t.true(failed);
 });
 
 test('should throw exception when first undefined param', (t) => {
@@ -18,7 +18,7 @@ test('should throw exception when first undefined param', (t) => {
   } catch (err) {
     failed = true;
   }
-  t.is(failed, true);
+  t.true(failed);
 });
 
 test('should throw exception when second undefined param', (t) => {
@@ -28,7 +28,7 @@ test('should throw exception when second undefined param', (t) => {
   } catch (err) {
     failed = true;
   }
-  t.is(failed, true);
+  t.true(failed);
 });
 
 test('should extend two empty object', (t) => {

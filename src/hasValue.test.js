@@ -14,29 +14,29 @@ test('should say empty string has no value', (t) => {
 });
 
 test('should say string has value', (t) => {
-  t.is(hasValue('test'), true);
+  t.true(hasValue('test'));
 });
 
 test('should say zero has value', (t) => {
-  t.is(hasValue(0), true);
+  t.true(hasValue(0));
 });
 
 test('should say NaN has value', (t) => {
-  t.is(hasValue(NaN), true);
+  t.true(hasValue(NaN));
 });
 
 test('should say empty obj has value', (t) => {
-  t.is(hasValue({}), true);
+  t.true(hasValue({}));
 });
 
 test('should say empty array has value', (t) => {
-  t.is(hasValue([]), true);
+  t.true(hasValue([]));
 });
 
 test('should say true has value', (t) => {
-  t.is(hasValue(true), true);
+  t.true(hasValue(true));
 });
 
 test('should say false has value', (t) => {
-  t.is(hasValue(false), true);
+  t.true(hasValue(false));
 });
