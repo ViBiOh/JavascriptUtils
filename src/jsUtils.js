@@ -14,11 +14,14 @@ export function getInt(value) {
 }
 
 export function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (((max - min) + 1) + min));
+  const maxValue = max - min;
+  return Math.floor(Math.random() * (maxValue + 1 + min));
 }
 
 export function hasValue(value) {
-  return typeof value !== 'undefined' && value !== null && (Array.isArray(value) || String(value) !== '');
+  return (
+    typeof value !== 'undefined' && value !== null && (Array.isArray(value) || String(value) !== '')
+  );
 }
 
 export function inspectValue(value) {
@@ -46,9 +49,14 @@ export function inspectValue(value) {
 }
 
 export function isAssociativeArray(value) {
-  return typeof value === 'object' && value !== null &&
-    !(value instanceof String || value instanceof Boolean || value instanceof Number ||
-      Array.isArray(value));
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !(value instanceof String ||
+      value instanceof Boolean ||
+      value instanceof Number ||
+      Array.isArray(value))
+  );
 }
 
 export function arrayRm(array, item) {
@@ -73,10 +81,12 @@ export function checkArrayOf(array, type, message) {
     return [array];
   }
 
-  if (!Array.isArray(array) ||
+  if (
+    !Array.isArray(array) ||
     array
       .map(source => source instanceof type)
-      .reduce((previous, current) => !current || previous, false)) {
+      .reduce((previous, current) => !current || previous, false)
+  ) {
     throw new Error(message || 'array contains objects differents than required');
   }
 
@@ -91,8 +101,11 @@ export function extend(destination, append) {
   }
 
   Object.keys(append).forEach((key) => {
-    if (safeHasOwnProperty.apply(destinationExtended, [key]) &&
-      isAssociativeArray(append[key]) && isAssociativeArray(destinationExtended[key])) {
+    if (
+      safeHasOwnProperty.apply(destinationExtended, [key]) &&
+      isAssociativeArray(append[key]) &&
+      isAssociativeArray(destinationExtended[key])
+    ) {
       extend(destinationExtended[key], append[key]);
     } else {
       destinationExtended[key] = append[key];
@@ -106,39 +119,45 @@ export function stringify(obj, replacer, space) {
   const objectCache = [];
   const whiteList = Array.isArray(replacer) ? replacer : false;
 
-  return JSON.stringify(obj, (key, value) => {
-    if (key !== '' && whiteList && whiteList.indexOf(key) === -1) {
-      return undefined;
-    }
-    if (typeof value === 'object' && value !== null) {
-      if (objectCache.indexOf(value) !== -1) {
-        return '[Circular]';
+  return JSON.stringify(
+    obj,
+    (key, value) => {
+      if (key !== '' && whiteList && whiteList.indexOf(key) === -1) {
+        return undefined;
       }
-      objectCache.push(value);
-    }
-    return value;
-  }, space);
+      if (typeof value === 'object' && value !== null) {
+        if (objectCache.indexOf(value) !== -1) {
+          return '[Circular]';
+        }
+        objectCache.push(value);
+      }
+      return value;
+    },
+    space,
+  );
 }
 
 export function asyncify(fn, bind) {
-  return (...args) => new Promise((resolve, reject) => {
-    try {
-      resolve(fn.apply(bind || null, args));
-    } catch (err) {
-      reject(err);
-    }
-  });
+  return (...args) =>
+    new Promise((resolve, reject) => {
+      try {
+        resolve(fn.apply(bind || null, args));
+      } catch (err) {
+        reject(err);
+      }
+    });
 }
 
 export function asyncifyCallback(fn, bind) {
-  return (...args) => new Promise((resolve, reject) => {
-    args.push((err, res) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(res);
+  return (...args) =>
+    new Promise((resolve, reject) => {
+      args.push((err, res) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(res);
+      });
+      fn.apply(bind || null, args);
     });
-    fn.apply(bind || null, args);
-  });
 }

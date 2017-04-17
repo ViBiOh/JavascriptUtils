@@ -36,73 +36,102 @@ test('should extend two empty object', (t) => {
 });
 
 test('should extend two simple objects', (t) => {
-  t.deepEqual(extend({
-    id: 1, name: 'Test',
-  }, {
-    id: 2, mail: 'test@localhost',
-  }), {
-    id: 2, name: 'Test', mail: 'test@localhost',
-  });
+  t.deepEqual(
+    extend(
+      {
+        id: 1,
+        name: 'Test',
+      },
+      {
+        id: 2,
+        mail: 'test@localhost',
+      },
+    ),
+    {
+      id: 2,
+      name: 'Test',
+      mail: 'test@localhost',
+    },
+  );
 });
 
 test('should extend two objects with one sub-objects', (t) => {
-  t.deepEqual(extend({
-    id: 1, name: 'Test',
-  }, {
-    id: 2,
-    contact: {
-      mail: 'test@localhost',
+  t.deepEqual(
+    extend(
+      {
+        id: 1,
+        name: 'Test',
+      },
+      {
+        id: 2,
+        contact: {
+          mail: 'test@localhost',
+        },
+      },
+    ),
+    {
+      id: 2,
+      name: 'Test',
+      contact: {
+        mail: 'test@localhost',
+      },
     },
-  }), {
-    id: 2,
-    name: 'Test',
-    contact: {
-      mail: 'test@localhost',
-    },
-  });
+  );
 });
 
 test('should extend two objects with undefined force', (t) => {
-  t.deepEqual(extend({
-    id: 1,
-    name: 'Test',
-    contact: {
-      mail: 'test@localhost',
+  t.deepEqual(
+    extend(
+      {
+        id: 1,
+        name: 'Test',
+        contact: {
+          mail: 'test@localhost',
+        },
+      },
+      {
+        id: 2,
+        contact: undefined,
+      },
+    ),
+    {
+      id: 2,
+      name: 'Test',
+      contact: undefined,
     },
-  }, {
-    id: 2,
-    contact: undefined,
-  }), {
-    id: 2,
-    name: 'Test',
-    contact: undefined,
-  });
+  );
 });
 
 test('should extend two objects with sub-objects', (t) => {
-  t.deepEqual(extend({
-    id: 1,
-    name: 'Test',
-    contact: {
-      mail: 'test@localhost',
-    },
-  }, {
-    id: 2,
-    contact: {
-      event: () => {
-        'test';
+  t.deepEqual(
+    extend(
+      {
+        id: 1,
+        name: 'Test',
+        contact: {
+          mail: 'test@localhost',
+        },
       },
-    },
-  }).toString(), {
-    id: 2,
-    name: 'Test',
-    contact: {
-      mail: 'test@localhost',
-      event: () => {
-        'test';
+      {
+        id: 2,
+        contact: {
+          event: () => {
+            'test';
+          },
+        },
       },
-    },
-  }.toString());
+    ).toString(),
+    {
+      id: 2,
+      name: 'Test',
+      contact: {
+        mail: 'test@localhost',
+        event: () => {
+          'test';
+        },
+      },
+    }.toString(),
+  );
 });
 
 test('should ignore prototype property', (t) => {
@@ -111,7 +140,8 @@ test('should ignore prototype property', (t) => {
       this.id = id;
     }
 
-    toString() { // eslint-disable-line class-methods-use-this
+    // eslint-disable-next-line class-methods-use-this
+    toString() {
       return 'test string';
     }
   }

@@ -35,8 +35,10 @@ test('should works with an empty array', (t) => {
 });
 
 test('should works with an array of valid instances', (t) => {
-  t.deepEqual(checkArrayOf([new TestClass(1), new TestClass(2)], TestClass),
-    [new TestClass(1), new TestClass(2)]);
+  t.deepEqual(checkArrayOf([new TestClass(1), new TestClass(2)], TestClass), [
+    new TestClass(1),
+    new TestClass(2),
+  ]);
 });
 
 test('should reject if array contains invalid instance', (t) => {

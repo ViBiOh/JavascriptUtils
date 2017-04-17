@@ -4,8 +4,10 @@
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
-    "eslint": "./node_modules/.bin/eslint src/",
-    "pretest": "npm run eslint",
+    "prettier": "./node_modules/.bin/prettier --print-width 100 --single-quote --trailing-comma all --color --write \"./src/**/*.js\"",
+    "eslint": "./node_modules/.bin/eslint --fix \"./src/**/*.js\"",
+    "codestyle": "npm run prettier && npm run eslint",
+    "pretest": "npm run codestyle",
     "test": "./node_modules/.bin/nyc --reporter text --reporter lcov --require babel-core/register ./node_modules/.bin/ava",
     "coverage": "./node_modules/.bin/codecov -f ./coverage/lcov.info",
     "build:uglify": "./node_modules/.bin/babel ./src/jsUtils.js | ./node_modules/.bin/uglifyjs -o index.js -c -mt --preamble //${npm_package_name}@${npm_package_version}",
@@ -36,6 +38,7 @@
     "eslint-plugin-import": "latest",
     "eslint-config-airbnb": "latest",
     "nyc": "latest",
+    "prettier": "latest",
     "uglify-js": "latest"
   },
   "ava": {

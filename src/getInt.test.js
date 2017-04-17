@@ -18,9 +18,12 @@ test('should say if object is an int', (t) => {
 });
 
 test('should say if defined object is an int', (t) => {
-  t.is(getInt({
-    value: 0,
-  }), null);
+  t.is(
+    getInt({
+      value: 0,
+    }),
+    null,
+  );
 });
 
 test('should say if array is an int', (t) => {
