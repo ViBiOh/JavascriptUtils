@@ -18,7 +18,7 @@ test('should not convert array', (t) => {
 });
 
 test('should not convert NaN', (t) => {
-  t.true(isNaN(inspectValue(NaN)));
+  t.true(Number.isNaN(inspectValue(NaN)));
 });
 
 test('should convert empty string to true', (t) => {
@@ -74,11 +74,11 @@ test('should convert string to float', (t) => {
 });
 
 test('should convert positive float to float', (t) => {
-  t.is(inspectValue('+10.10'), 10.10);
+  t.is(inspectValue('+10.10'), 10.1);
 });
 
 test('should convert negative float to float', (t) => {
-  t.is(inspectValue('-10.10'), -10.10);
+  t.is(inspectValue('-10.10'), -10.1);
 });
 
 test('should convert positive float to float', (t) => {

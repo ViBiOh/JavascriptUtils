@@ -52,10 +52,12 @@ export function isAssociativeArray(value) {
   return (
     typeof value === 'object' &&
     value !== null &&
-    !(value instanceof String ||
+    !(
+      value instanceof String ||
       value instanceof Boolean ||
       value instanceof Number ||
-      Array.isArray(value))
+      Array.isArray(value)
+    )
   );
 }
 
