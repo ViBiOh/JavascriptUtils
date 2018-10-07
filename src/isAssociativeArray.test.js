@@ -1,5 +1,5 @@
 import test from 'ava';
-import { isAssociativeArray } from '../src/jsUtils';
+import { isAssociativeArray } from './jsUtils';
 
 test('should say undefined is not an aa', (t) => {
   t.false(isAssociativeArray(undefined));

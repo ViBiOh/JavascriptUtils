@@ -1,5 +1,5 @@
 import test from 'ava';
-import { extend } from '../src/jsUtils';
+import { extend } from './jsUtils';
 
 test('should throw exception when undefined params', (t) => {
   let failed = false;

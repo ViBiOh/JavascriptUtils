@@ -1,5 +1,5 @@
 import test from 'ava';
-import { getInt } from '../src/jsUtils';
+import { getInt } from './jsUtils';
 
 test('should say if udefined is an int', (t) => {
   t.is(getInt(undefined), null);

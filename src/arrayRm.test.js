@@ -1,5 +1,5 @@
 import test from 'ava';
-import { arrayRm } from '../src/jsUtils';
+import { arrayRm } from './jsUtils';
 
 test('should deal with undefined array', (t) => {
   const array = undefined;

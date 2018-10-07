@@ -45,7 +45,6 @@
     "files": [
       "src/**/*.test.js"
     ],
-    "concurrency": 4,
     "require": [
       "babel-register"
     ]

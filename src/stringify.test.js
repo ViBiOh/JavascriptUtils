@@ -1,5 +1,5 @@
 import test from 'ava';
-import { stringify } from '../src/jsUtils';
+import { stringify } from './jsUtils';
 
 test('should stringify a basic object', (t) => {
   const result = stringify({

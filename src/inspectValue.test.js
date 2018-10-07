@@ -1,5 +1,5 @@
 import test from 'ava';
-import { inspectValue } from '../src/jsUtils';
+import { inspectValue } from './jsUtils';
 
 test('should not convert undefined', (t) => {
   t.is(inspectValue(undefined), undefined);

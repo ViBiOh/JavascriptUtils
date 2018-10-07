@@ -1,5 +1,5 @@
 import test from 'ava';
-import { checkArrayOf } from '../src/jsUtils';
+import { checkArrayOf } from './jsUtils';
 
 class TestClass {
   constructor(i) {

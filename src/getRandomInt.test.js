@@ -1,5 +1,5 @@
 import test from 'ava';
-import { getRandomInt } from '../src/jsUtils';
+import { getRandomInt } from './jsUtils';
 
 test('should respect lower bound', (t) => {
   t.true(getRandomInt(0, 100) >= 0);

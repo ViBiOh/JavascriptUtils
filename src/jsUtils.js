@@ -50,13 +50,13 @@ export function inspectValue(value) {
 
 export function isAssociativeArray(value) {
   return (
-    typeof value === 'object' &&
-    value !== null &&
-    !(
-      value instanceof String ||
-      value instanceof Boolean ||
-      value instanceof Number ||
-      Array.isArray(value)
+    typeof value === 'object'
+    && value !== null
+    && !(
+      value instanceof String
+      || value instanceof Boolean
+      || value instanceof Number
+      || Array.isArray(value)
     )
   );
 }
@@ -77,15 +77,15 @@ export function arrayRm(array, item) {
 export function checkArrayOf(array, type, message) {
   if (typeof array === 'undefined') {
     return [];
-  } else if (typeof type === 'undefined') {
+  } if (typeof type === 'undefined') {
     throw new Error('type is undefined in checkArrayOf');
   } else if (array instanceof type) {
     return [array];
   }
 
   if (
-    !Array.isArray(array) ||
-    array
+    !Array.isArray(array)
+    || array
       .map(source => source instanceof type)
       .reduce((previous, current) => !current || previous, false)
   ) {
@@ -104,9 +104,9 @@ export function extend(destination, append) {
 
   Object.keys(append).forEach((key) => {
     if (
-      safeHasOwnProperty.apply(destinationExtended, [key]) &&
-      isAssociativeArray(append[key]) &&
-      isAssociativeArray(destinationExtended[key])
+      safeHasOwnProperty.apply(destinationExtended, [key])
+      && isAssociativeArray(append[key])
+      && isAssociativeArray(destinationExtended[key])
     ) {
       extend(destinationExtended[key], append[key]);
     } else {
@@ -140,26 +140,24 @@ export function stringify(obj, replacer, space) {
 }
 
 export function asyncify(fn, bind) {
-  return (...args) =>
-    new Promise((resolve, reject) => {
-      try {
-        resolve(fn.apply(bind || null, args));
-      } catch (err) {
-        reject(err);
-      }
-    });
+  return (...args) => new Promise((resolve, reject) => {
+    try {
+      resolve(fn.apply(bind || null, args));
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
 
 export function asyncifyCallback(fn, bind) {
-  return (...args) =>
-    new Promise((resolve, reject) => {
-      args.push((err, res) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(res);
-      });
-      fn.apply(bind || null, args);
+  return (...args) => new Promise((resolve, reject) => {
+    args.push((err, res) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(res);
     });
+    fn.apply(bind || null, args);
+  });
 }

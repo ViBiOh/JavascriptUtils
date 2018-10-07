@@ -1,5 +1,5 @@
 import test from 'ava';
-import { asyncifyCallback } from '../src/jsUtils';
+import { asyncifyCallback } from './jsUtils';
 
 test('should work with empty args', (t) => {
   let increment = 0;

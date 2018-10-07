@@ -1,5 +1,5 @@
 import test from 'ava';
-import { hasValue } from '../src/jsUtils';
+import { hasValue } from './jsUtils';
 
 test('should say undefined has no value', (t) => {
   t.false(hasValue(undefined));
