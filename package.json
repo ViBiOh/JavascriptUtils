@@ -1,17 +1,16 @@
 {
   "name": "js-utils",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --print-width 100 --single-quote --trailing-comma all --color --write \"./src/**/*.js\"",
+    "prettier": "prettier --write \"./src/**/*.js\"",
     "eslint": "eslint --fix \"./src/**/*.js\"",
     "codestyle": "npm run prettier && npm run eslint",
     "pretest": "npm run codestyle",
-    "test": "nyc --reporter text --reporter lcov --require babel-core/register ava",
-    "coverage": "codecov -f ./coverage/lcov.info",
-    "build:uglify": "babel ./src/jsUtils.js | uglifyjs -o index.js -c -m",
-    "build": "npm test && npm run build:uglify"
+    "test": "nyc --reporter text --reporter lcov --require @babel/register ava --verbose",
+    "prebuild": "npm test",
+    "build": "babel ./src/jsUtils.js | uglifyjs -o index.js -c -m"
   },
   "repository": {
     "type": "git",
@@ -21,32 +20,33 @@
     "js",
     "utils"
   ],
-  "author": "Vincent Boutour <vincent.boutour@gmail.com>",
+  "author": "Vincent Boutour <bob@vibioh.fr>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ViBiOh/js-utils/issues"
   },
   "homepage": "https://github.com/ViBiOh/js-utils",
   "devDependencies": {
-    "ava": "latest",
-    "babel-core": "latest",
-    "babel-cli": "latest",
-    "babel-preset-env": "latest",
-    "babel-eslint": "latest",
-    "codecov": "latest",
-    "eslint": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-config-airbnb": "latest",
-    "nyc": "latest",
-    "prettier": "latest",
-    "uglify-js": "latest"
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/preset-env": "7.1.0",
+    "@babel/register": "7.0.0",
+    "ava": "1.0.0-rc.1",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.8.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "nyc": "13.1.0",
+    "prettier": "1.14.3",
+    "uglify-js": "3.4.9"
   },
   "ava": {
     "files": [
       "src/**/*.test.js"
     ],
     "require": [
-      "babel-register"
+      "@babel/register"
     ]
   }
 }
