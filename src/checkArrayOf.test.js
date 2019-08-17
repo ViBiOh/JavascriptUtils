@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import test from 'ava';
 import { checkArrayOf } from './jsUtils';
 
