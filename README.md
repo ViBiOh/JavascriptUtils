@@ -1,6 +1,8 @@
 # jsUtils
 
-[![Build Status](https://travis-ci.org/ViBiOh/js-utils.svg?branch=master)](https://travis-ci.org/ViBiOh/js-utils) [![Coverage Status](https://coveralls.io/repos/github/ViBiOh/js-utils/badge.svg?branch=master)](https://coveralls.io/github/ViBiOh/js-utils?branch=master)
+[![Build Status](https://travis-ci.org/ViBiOh/js-utils.svg?branch=master)](https://travis-ci.org/ViBiOh/js-utils)
+[![Coverage Status](https://coveralls.io/repos/github/ViBiOh/js-utils/badge.svg?branch=master)](https://coveralls.io/github/ViBiOh/js-utils?branch=master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ViBiOh/js-utils)](https://dependabot.com)
 
 Useful and commons functions reusable for JS project (frontend & backend).
 
