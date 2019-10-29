@@ -115,9 +115,7 @@ test('should extend two objects with sub-objects', t => {
       {
         id: 2,
         contact: {
-          event: () => {
-            'test';
-          },
+          event: () => 'test',
         },
       },
     ).toString(),
@@ -126,9 +124,7 @@ test('should extend two objects with sub-objects', t => {
       name: 'Test',
       contact: {
         mail: 'test@localhost',
-        event: () => {
-          'test';
-        },
+        event: () => 'test',
       },
     }.toString(),
   );
