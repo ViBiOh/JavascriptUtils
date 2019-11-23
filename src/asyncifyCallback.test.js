@@ -35,5 +35,8 @@ test('should handle error properly', t => {
     }
   });
 
-  return async(1).then(() => t.fail(), error => t.truthy(error));
+  return async(1).then(
+    () => t.fail(),
+    error => t.truthy(error),
+  );
 });

@@ -29,5 +29,8 @@ test('should handle error properly', t => {
     throw new Error('error');
   });
 
-  return async(1).then(() => t.fail(), error => t.truthy(error));
+  return async(1).then(
+    () => t.fail(),
+    error => t.truthy(error),
+  );
 });
