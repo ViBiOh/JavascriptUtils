@@ -1,7 +1,9 @@
+---
+
 language: node_js
 node_js: 13
 script:
-- npm run build
-- bash <(curl -q -sSL --max-time 10 https://codecov.io/bash)
+  - npm run build
+  - bash <(curl -q -sSL --max-time 10 https://codecov.io/bash)
 notifications:
   email: false
