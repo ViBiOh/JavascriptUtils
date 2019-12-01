@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write \"./src/**/*.js\"",
-    "lint": "eslint --fix \"./src/**/*.js\"",
-    "codestyle": "npm run format && npm run lint",
+    "style": "eslint --fix \"./src/**/*.js\"",
+    "codestyle": "npm run format && npm run style",
     "pretest": "npm run codestyle",
     "test": "nyc --reporter text --reporter lcov --require @babel/register ava --verbose",
     "prebuild": "npm test",
