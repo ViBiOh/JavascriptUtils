@@ -25,26 +25,32 @@ export function hasValue(value) {
 }
 
 export function inspectValue(value) {
-  if (typeof value !== 'undefined' && value !== null) {
-    if (Array.isArray(value)) {
-      return value;
-    }
-
-    const strValue = String(value);
-    if (strValue === '' || strValue === 'true') {
-      return true;
-    }
-    if (strValue === 'false') {
-      return false;
-    }
-    const intValue = getInt(value);
-    if (intValue !== null) {
-      return intValue;
-    }
-    if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
-      return parseFloat(strValue);
-    }
+  if (typeof value === 'undefined' || value === null) {
+    return value;
   }
+
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  const strValue = String(value);
+  if (strValue === '' || strValue === 'true') {
+    return true;
+  }
+
+  if (strValue === 'false') {
+    return false;
+  }
+
+  const intValue = getInt(value);
+  if (intValue !== null) {
+    return intValue;
+  }
+
+  if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
+    return parseFloat(strValue);
+  }
+
   return value;
 }
 
@@ -78,9 +84,12 @@ export function checkArrayOf(array, type, message) {
   if (typeof array === 'undefined') {
     return [];
   }
+
   if (typeof type === 'undefined') {
     throw new Error('type is undefined in checkArrayOf');
-  } else if (array instanceof type) {
+  }
+
+  if (array instanceof type) {
     return [array];
   }
 

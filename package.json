@@ -4,12 +4,10 @@
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"./src/**/*.js\"",
-    "style": "eslint --fix \"./src/**/*.js\"",
+    "format": "prettier --write \"./src/*.js\"",
+    "style": "eslint --fix \"./src/*.js\"",
     "codestyle": "npm run format && npm run style",
-    "pretest": "npm run codestyle",
-    "test": "nyc --reporter text --reporter lcov --require @babel/register ava --verbose",
-    "prebuild": "npm test",
+    "test": "nyc --reporter text --reporter lcov ava --verbose --timeout 30s",
     "build": "babel ./src/jsUtils.js | uglifyjs -o index.js -c -m"
   },
   "repository": {
@@ -43,7 +41,7 @@
   },
   "ava": {
     "files": [
-      "src/**/*.test.js"
+      "src/*.test.js"
     ],
     "require": [
       "@babel/register"

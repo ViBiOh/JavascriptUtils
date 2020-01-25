@@ -3,31 +3,31 @@ import { asyncifyCallback } from './jsUtils';
 
 test('should work with empty args', t => {
   let increment = 0;
-  const async = asyncifyCallback(callback => {
+  const asyncFn = asyncifyCallback(callback => {
     increment += 1;
     callback(null, 2);
   });
 
-  return async().then(result => {
+  return asyncFn().then(result => {
     t.is(result, 2);
     t.is(increment, 1);
   });
 });
 
 test('should work with one arg', t => {
-  const async = asyncifyCallback((increment, callback) => {
+  const asyncFn = asyncifyCallback((increment, callback) => {
     callback(null, increment * 5);
   });
 
   const init = 1;
-  return async(init).then(result => {
+  return asyncFn(init).then(result => {
     t.is(init, 1);
     t.is(result, 5);
   });
 });
 
 test('should handle error properly', t => {
-  const async = asyncifyCallback((increment, callback) => {
+  const asyncFn = asyncifyCallback((increment, callback) => {
     try {
       throw new Error('error');
     } catch (e) {
@@ -35,7 +35,7 @@ test('should handle error properly', t => {
     }
   });
 
-  return async(1).then(
+  return asyncFn(1).then(
     () => t.fail(),
     error => t.truthy(error),
   );
