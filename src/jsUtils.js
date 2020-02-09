@@ -113,10 +113,14 @@ export function extend(destination, append) {
   }
 
   Object.keys(append).forEach(key => {
+    if (!safeHasOwnProperty.apply(append, [key])) {
+      return;
+    }
+
     if (
       safeHasOwnProperty.apply(destinationExtended, [key]) &&
-      isAssociativeArray(append[key]) &&
-      isAssociativeArray(destinationExtended[key])
+      isAssociativeArray(destinationExtended[key]) &&
+      isAssociativeArray(append[key])
     ) {
       extend(destinationExtended[key], append[key]);
     } else {
