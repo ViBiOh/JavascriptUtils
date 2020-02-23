@@ -37,7 +37,7 @@
     "eslint-plugin-import": "2.20.1",
     "nyc": "15.0.0",
     "prettier": "1.19.1",
-    "uglify-js": "3.7.7"
+    "uglify-js": "3.8.0"
   },
   "ava": {
     "files": [
