@@ -15,7 +15,7 @@ Useful and commons functions reusable for JS project (frontend & backend).
 
 ### In ES6
 
-    import {asyncify} from 'js-utils';
+    import {asyncifyCallback} from 'js-utils';
 
 ### Old fashioned
 

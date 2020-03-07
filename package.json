@@ -4,9 +4,8 @@
   "description": "Javascript Utils Functions",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"./src/*.js\"",
-    "style": "eslint --fix \"./src/*.js\"",
-    "codestyle": "npm run format && npm run style",
+    "format": "prettier --write $(find ./src/ -name '*.js')",
+    "style": "eslint --fix $(find ./src/ -name '*.js')",
     "test": "nyc --reporter text --reporter lcov ava --verbose --timeout 30s",
     "build": "babel ./src/jsUtils.js | uglifyjs -o index.js -c -m"
   },
