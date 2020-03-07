@@ -153,17 +153,6 @@ export function stringify(obj, replacer, space) {
   );
 }
 
-export function asyncify(fn, bind) {
-  return (...args) =>
-    new Promise((resolve, reject) => {
-      try {
-        resolve(fn.apply(bind || null, args));
-      } catch (err) {
-        reject(err);
-      }
-    });
-}
-
 export function asyncifyCallback(fn, bind) {
   return (...args) =>
     new Promise((resolve, reject) => {
