@@ -13,10 +13,7 @@
     "type": "git",
     "url": "git://github.com/ViBiOh/js-utils.git"
   },
-  "keywords": [
-    "js",
-    "utils"
-  ],
+  "keywords": ["js", "utils"],
   "author": "Vincent Boutour <bob@vibioh.fr>",
   "license": "MIT",
   "bugs": {
@@ -39,11 +36,7 @@
     "uglify-js": "3.10.0"
   },
   "ava": {
-    "files": [
-      "src/*.test.js"
-    ],
-    "require": [
-      "@babel/register"
-    ]
+    "files": ["src/*.test.js"],
+    "require": ["@babel/register"]
   }
 }
