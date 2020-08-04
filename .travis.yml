@@ -6,6 +6,6 @@ script:
   - npm run style
   - npm test
   - npm run build
-  - bash <(curl -q -sSL --max-time 10 https://codecov.io/bash)
+  - bash <(curl -q -sSL --max-time 30 https://codecov.io/bash)
 notifications:
   email: false
