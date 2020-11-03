@@ -1,6 +1,6 @@
 # jsUtils
 
-[![Build Status](https://travis-ci.com/ViBiOh/js-utils.svg?branch=master)](https://travis-ci.com/ViBiOh/js-utils)
+[![Build](https://github.com/ViBiOh/js-utils/workflows/Build/badge.svg)](https://github.com/ViBiOh/js-utils/actions)
 [![Coverage Status](https://coveralls.io/repos/github/ViBiOh/js-utils/badge.svg?branch=master)](https://coveralls.io/github/ViBiOh/js-utils?branch=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ViBiOh_js-utils&metric=alert_status)](https://sonarcloud.io/dashboard?id=ViBiOh_js-utils)
 
