@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git://github.com/ViBiOh/js-utils.git"
   },
-  "keywords": ["js", "utils"],
+  "keywords": [
+    "js",
+    "utils"
+  ],
   "author": "Vincent Boutour <bob@vibioh.fr>",
   "license": "MIT",
   "bugs": {
@@ -27,7 +30,7 @@
     "@babel/register": "7.12.13",
     "ava": "3.15.0",
     "babel-eslint": "10.1.0",
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-import": "2.22.1",
@@ -36,7 +39,11 @@
     "uglify-js": "3.12.7"
   },
   "ava": {
-    "files": ["src/*.test.js"],
-    "require": ["@babel/register"]
+    "files": [
+      "src/*.test.js"
+    ],
+    "require": [
+      "@babel/register"
+    ]
   }
 }
