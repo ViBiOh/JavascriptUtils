@@ -35,7 +35,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.23.4",
     "nyc": "15.1.0",
-    "prettier": "2.3.0",
+    "prettier": "2.3.1",
     "uglify-js": "3.13.9"
   },
   "ava": {
