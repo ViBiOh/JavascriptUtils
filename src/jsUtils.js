@@ -96,7 +96,7 @@ export function checkArrayOf(array, type, message) {
   if (
     !Array.isArray(array) ||
     array
-      .map(source => source instanceof type)
+      .map((source) => source instanceof type)
       .reduce((previous, current) => !current || previous, false)
   ) {
     throw new Error(message || 'array contains objects differents than required');
@@ -112,7 +112,7 @@ export function extend(destination, append) {
     throw new Error(`Invalid extend between <${destination}> and <${append}>`);
   }
 
-  Object.keys(append).forEach(key => {
+  Object.keys(append).forEach((key) => {
     if (!safeHasOwnProperty.apply(append, [key])) {
       return;
     }

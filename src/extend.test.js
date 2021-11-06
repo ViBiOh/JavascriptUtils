@@ -1,7 +1,7 @@
 import test from 'ava';
 import { extend } from './jsUtils';
 
-test('should throw exception when undefined params', t => {
+test('should throw exception when undefined params', (t) => {
   let failed = false;
   try {
     extend(undefined, undefined);
@@ -11,7 +11,7 @@ test('should throw exception when undefined params', t => {
   t.true(failed);
 });
 
-test('should throw exception when first undefined param', t => {
+test('should throw exception when first undefined param', (t) => {
   let failed = false;
   try {
     extend({}, null);
@@ -21,7 +21,7 @@ test('should throw exception when first undefined param', t => {
   t.true(failed);
 });
 
-test('should throw exception when second undefined param', t => {
+test('should throw exception when second undefined param', (t) => {
   let failed = false;
   try {
     extend(true, {});
@@ -31,11 +31,11 @@ test('should throw exception when second undefined param', t => {
   t.true(failed);
 });
 
-test('should extend two empty object', t => {
+test('should extend two empty object', (t) => {
   t.deepEqual(extend({}, {}), {});
 });
 
-test('should extend two simple objects', t => {
+test('should extend two simple objects', (t) => {
   t.deepEqual(
     extend(
       {
@@ -55,7 +55,7 @@ test('should extend two simple objects', t => {
   );
 });
 
-test('should extend two objects with one sub-objects', t => {
+test('should extend two objects with one sub-objects', (t) => {
   t.deepEqual(
     extend(
       {
@@ -79,7 +79,7 @@ test('should extend two objects with one sub-objects', t => {
   );
 });
 
-test('should extend two objects with undefined force', t => {
+test('should extend two objects with undefined force', (t) => {
   t.deepEqual(
     extend(
       {
@@ -102,7 +102,7 @@ test('should extend two objects with undefined force', t => {
   );
 });
 
-test('should extend two objects with sub-objects', t => {
+test('should extend two objects with sub-objects', (t) => {
   t.deepEqual(
     extend(
       {
@@ -130,7 +130,7 @@ test('should extend two objects with sub-objects', t => {
   );
 });
 
-test('should ignore prototype property', t => {
+test('should ignore prototype property', (t) => {
   class RawObject {
     constructor(id) {
       this.id = id;

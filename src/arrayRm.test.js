@@ -1,42 +1,42 @@
 import test from 'ava';
 import { arrayRm } from './jsUtils';
 
-test('should deal with undefined array', t => {
+test('should deal with undefined array', (t) => {
   const array = undefined;
   arrayRm(array, undefined);
 
   t.is(array, undefined);
 });
 
-test('should deal with null array', t => {
+test('should deal with null array', (t) => {
   const array = null;
   arrayRm(array, undefined);
 
   t.is(array, null);
 });
 
-test('should not remove content undefined', t => {
+test('should not remove content undefined', (t) => {
   const array = [1];
   arrayRm(array, undefined);
 
   t.deepEqual(array, [1]);
 });
 
-test('should not remove content not present', t => {
+test('should not remove content not present', (t) => {
   const array = [1];
   arrayRm(array, 0);
 
   t.deepEqual(array, [1]);
 });
 
-test('should remove content of one row', t => {
+test('should remove content of one row', (t) => {
   const array = [1];
   arrayRm(array, 1);
 
   t.deepEqual(array, []);
 });
 
-test('should remove object content', t => {
+test('should remove object content', (t) => {
   const variable = {
     id: 4,
   };
@@ -46,7 +46,7 @@ test('should remove object content', t => {
   t.deepEqual(array, []);
 });
 
-test('should remove object content on multiple row', t => {
+test('should remove object content on multiple row', (t) => {
   const array = [];
   for (let i = 0; i < 10; i += 1) {
     array.push({
@@ -68,7 +68,7 @@ test('should remove object content on multiple row', t => {
   t.is(array[5].id, 6);
 });
 
-test('should not remove similar object', t => {
+test('should not remove similar object', (t) => {
   const array = [];
   for (let i = 0; i < 10; i += 1) {
     array.push({
