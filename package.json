@@ -33,7 +33,7 @@
     "eslint": "8.2.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-import": "2.25.3",
     "nyc": "15.1.0",
     "prettier": "2.4.1",
     "uglify-js": "3.14.3"
