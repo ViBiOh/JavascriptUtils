@@ -6,16 +6,11 @@ export function getInt(value) {
   }
 
   const strValue = String(value);
-  if (strValue.search(/^[+-]?[0-9]+$/) !== -1) {
+  if (strValue.search(/^[+-]?\d+$/) !== -1) {
     return parseInt(strValue, 10);
   }
 
   return null;
-}
-
-export function getRandomInt(min, max) {
-  const maxValue = max - min;
-  return Math.floor(Math.random() * (maxValue + 1 + min));
 }
 
 export function hasValue(value) {
@@ -47,7 +42,7 @@ export function inspectValue(value) {
     return intValue;
   }
 
-  if (strValue.search(/^[+-]?[0-9]*\.[0-9]+$/) !== -1) {
+  if (strValue.search(/^[+-]?\d*\.\d+$/) !== -1) {
     return parseFloat(strValue);
   }
 
