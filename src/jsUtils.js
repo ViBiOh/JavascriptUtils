@@ -161,3 +161,22 @@ export function asyncifyCallback(fn, bind) {
       fn.apply(bind || null, args);
     });
 }
+
+export function callWithinTimeout(callback, timeout = 5000) {
+  let done = false;
+  let token;
+
+  function wrapped() {
+    if (done) {
+      return;
+    }
+
+    done = true;
+    clearTimeout(token);
+    callback();
+  }
+
+  token = setTimeout(wrapped, timeout);
+
+  return wrapped;
+}
