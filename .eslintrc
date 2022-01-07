@@ -1,4 +1,7 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": ["airbnb/base", "prettier"]
+  "extends": ["airbnb/base", "prettier"],
+  "settings": {
+    "import/core-modules": ["ava"]
+  }
 }
