@@ -27,7 +27,7 @@ test('should work with one arg', (t) => {
 });
 
 test('should handle error properly', (t) => {
-  const asyncFn = asyncifyCallback((increment, callback) => {
+  const asyncFn = asyncifyCallback((_, callback) => {
     try {
       throw new Error('error');
     } catch (e) {
