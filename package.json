@@ -30,7 +30,7 @@
     "@babel/preset-env": "7.19.3",
     "@babel/register": "7.18.9",
     "ava": "4.3.3",
-    "eslint": "8.24.0",
+    "eslint": "8.25.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
