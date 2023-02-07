@@ -29,7 +29,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@babel/preset-env": "7.20.2",
     "@babel/register": "7.18.9",
-    "ava": "5.1.1",
+    "ava": "5.2.0",
     "eslint": "8.33.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.6.0",
